@@ -24,41 +24,60 @@ generator (Cursor, v0, Claude, etc.) alongside the screenshot for best results.
 
 ## 2. Color Palette
 
-| Token | Hex (approx) | Usage |
+| Token | Hex | Usage |
 |---|---|---|
-| `--bg` | `#F7F5F1` | Page background, warm off-white/cream (not pure white) |
-| `--ink-900` | `#111111` | Primary headings, body-strong text, primary buttons |
-| `--ink-700` | `#3A3A3A` | Secondary headings / sub-lines |
-| `--ink-400` | `#9A9A96` | Muted headings, faded heading lines, section labels |
-| `--ink-200` | `#D8D6D0` | Ghost/background typography, dividers |
-| `--accent` | `#E8622C` (warm orange) | Emphasis words, "with AI", numbers (≈2, 01-04), CTA button fill, status dot alt |
-| `--success-dot` | `#4CAF50` (green) | "Open to opportunities" status indicator |
-| `--white` | `#FFFFFF` | Card backgrounds, button text-on-dark |
+| `--bg` | `#FBFBFA` | Page background, warm off-white/cream (not pure white) |
+| `--ink-900` | `#151515` | Primary headings, body-strong text, primary buttons |
+| `--ink-700` | `#686865` | Secondary headings / sub-lines |
+| `--ink-400` | `#AAA9A5` | Muted headings, faded heading lines, section labels |
+| `--ink-200` | `#E7E7E3` | Ghost/background typography, borders, dividers |
+| `--accent` | `#F36B16` (warm orange) | Emphasis words, "with AI", numbers, CTA button fill |
+| `--accent-muted` | `#F36B1648` (muted orange) | Large step numerals, soft accent emphasis |
+| `--success-dot` | `#28C985` (green) | "Open to opportunities" status indicator |
+| `--surface` | `#FFFFFF` | Card backgrounds, button text-on-dark, badge fills |
 
 Notes for AI: this is a **warm neutral palette**, not cool gray. Background
 is cream/off-white, not `#FFFFFF`. Only one accent hue exists in the entire
 page — resist adding blues, purples, or multiple accents.
 
+### Fade opacity scale for heading hierarchy
+
+The design uses the same near-black hue (`#151515`) at varying opacities to
+create the fade-heading effect. Use these exact hex values:
+
+| Opacity | Hex | Usage |
+|---|---|---|
+| 100% | `#151515` | Primary heading line |
+| 76% | `#151515C2` | Faded role/secondary line |
+| 66% | `#15151566` | Range labels, dramatic second lines |
+| 54% | `#1515158A` | Distant timeline/education roles |
+| 40% | `#15151540` | "ENGINEERING." fade line |
+| 25% | `#1515152E` | Lightest heading line ("to production.", "accountable.") |
+| 12% | `#15151512` | Ghost background project names |
+
 ---
 
 ## 3. Typography
 
-- **Primary typeface**: Humanist sans-serif, similar to *Inter*, *General
-  Sans*, or *Neue Montreal* — geometric but warm, generous x-height.
-- **Display/heading font size**: Very large (48–72px+ desktop) for section
-  titles like "Selected work." / "LET'S BUILD SOMETHING RELIABLE."
-- **Hero name line**: ~40–48px, medium weight.
-- **Body copy**: Small, ~14–15px, muted gray (`--ink-700`), generous line
-  height, short line length (constrained to ~2 lines, centered under hero).
-- **Labels/eyebrows**: All-caps or small-caps, ~11px, letter-spaced, muted
-  gray (e.g. "EXPERIENCE", "CAPABILITY", "WORKFLOW", "01 / FEATURED").
+- **Primary typeface**: **Geist** (variable sans-serif) for body, headings,
+  and statements.
+- **Mono typeface**: **Geist Mono** for labels, indexes, dates, range tags,
+  and tech-stack eyebrows.
+- **Display/heading font size**: Very large for section titles:
+  - Hero statement: 60px, weight 650, letter-spacing -2.5
+  - Display headings: 92–96px, weight 650, letter-spacing -4 to -4.4
+  - Experience stat number: 132px, weight 650, letter-spacing -7
+- **Body copy**: 14–18px, `--ink-700`, line-height 1.5, short line length.
+- **Labels/eyebrows**: 9–11px, all-caps or small-caps, letter-spacing 0.6–1,
+  `--ink-400`, Geist Mono.
 - **Number treatment**: Large accent-colored numerals used as list markers
-  (≈2, 01, 02, 03, 04) — oversized relative to their label text, orange.
+  (≈2, 01–04) — oversized relative to their label text, orange. Muted step
+  numerals use `--accent-muted` (`#F36B1648`).
 
 **Weight pairing pattern**: within one heading block, mix a bold/black line
 with a lighter gray line directly below it of the *same size* — this fade
-effect is a signature move of this design (see "Selected work." example and
-"AI moves fast. / Engineering stays accountable.").
+effect is a signature move of this design. Use the fade opacity scale above
+rather than separate gray hues.
 
 ---
 
@@ -136,7 +155,23 @@ effect is a signature move of this design (see "Selected work." example and
 
 ---
 
-## 6. Motion / Interaction Cues (inferred, not fully visible in static image)
+## 6. Image Assets
+
+Required mockups for the selected-work section. Copy these from `assets/`
+into `public/images/` before Phase 2 layout:
+
+| Final path in `public/images/` | Source asset in `assets/` | Usage |
+|---|---|---|
+| `rizky-inline-portrait.png` | `circular-pp.png` | 64px circular inline portrait next to "Hi, I'm Rizky." |
+| `lovary-jewelry-ecommerce.png` | `lovary-web-commerce-app.png` | 780×400 featured web project mockup |
+| `blackboxgym-mobile-app.png` | `blackbox-gym-app.png` | 780×400 featured mobile project mockup |
+
+Additional reference assets (`seco-web-app.png`, `vps-migrate-project.png`)
+can be used later for secondary project rows as the build expands.
+
+---
+
+## 7. Motion / Interaction Cues (inferred, not fully visible in static image)
 
 - Likely subtle fade/slide-up on scroll for section reveals (common with
   this aesthetic) — not confirmed from the screenshot, treat as optional.
@@ -145,14 +180,14 @@ effect is a signature move of this design (see "Selected work." example and
 
 ---
 
-## 7. AI Prompting Notes
+## 8. AI Prompting Notes
 
 When generating code from this doc, instruct the AI to:
-1. Use a **cream/off-white background**, never pure white or dark mode.
-2. Use **exactly one accent color** (orange) — reject any suggestion to add
+1. Use a **cream/off-white background** (`#FBFBFA`), never pure white or dark mode.
+2. Use **exactly one accent color** (orange `#F36B16`) — reject any suggestion to add
    secondary accent hues.
 3. Reproduce the **fade-hierarchy heading pattern** (bold line + same-size
-   lighter gray line beneath) rather than just varying font sizes.
+   lighter gray line beneath) using the exact opacity scale in section 2.
 4. Keep **generous vertical whitespace** — err on the side of more space
    between sections than feels natural.
 5. Use **pill-shaped buttons**, not sharp-cornered rectangles.
@@ -160,3 +195,6 @@ When generating code from this doc, instruct the AI to:
    section headers and in the footer as a signature texture element.
 7. Keep all icons minimal/line-style (arrows, dots) — no filled icon sets
    or illustrations.
+8. Treat the **Pencil design file** (`portfolio-web.pen`) as the visual source
+   of truth; when exact values in this doc differ from the Pencil file, use
+   the Pencil file.

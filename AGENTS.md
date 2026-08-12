@@ -13,6 +13,8 @@ Read these before every session and before making changes:
 3. `docs/portfolio-dev-plan.md` — stack, file structure, motion system, build phases
 4. `/Users/rizkyrachman/Documents/code-nest-2025/pencil-design/portfolio-web.pen` — read via Pencil MCP for visual fidelity and section structure
 
+**Source of truth hierarchy:** when exact visual values (colors, sizes, positions) in the written docs differ from the Pencil design file, the Pencil file takes precedence.
+
 ## Working Rules
 
 - Read this `AGENTS.md` at the start of every session.

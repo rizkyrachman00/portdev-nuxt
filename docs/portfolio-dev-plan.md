@@ -105,13 +105,17 @@ Do not add: Spline, Three.js, any 3D/WebGL library, any animation library beyond
 
 ## 4. Design Tokens (summary — full detail in design-system.md)
 
-- Background: cream/off-white (`#F7F5F1`), never pure white
-- Ink scale: `900` (headings) → `700` (sub-text) → `400` (muted/faded headings) → `200` (ghost text/dividers)
-- Single accent: warm orange (`#E8622C`) — used only for emphasis words, numerals, CTA fills
-- Typography: humanist sans (Inter Variable or General Sans Variable), large display headings, small letter-spaced caps labels
+- Background: cream/off-white (`#FBFBFA`), never pure white
+- Ink scale: `900` (`#151515`) → `700` (`#686865`) → `400` (`#AAA9A5`) → `200` (`#E7E7E3`)
+- Single accent: warm orange (`#F36B16`) — used only for emphasis words, numerals, CTA fills
+- Muted accent: `#F36B1648` for large step numerals
+- Success dot: `#28C985`
+- Typography: **Geist** variable sans for body/headings, **Geist Mono** for labels/indexes/dates, large display headings, small letter-spaced caps labels
 - Signature pattern: bold heading line + same-size lighter-gray line beneath (fade hierarchy) — this pattern is also the basis for the weight-morph motion effect (section 5)
 - Buttons: fully rounded pills, not sharp corners
 - Oversized faded background typography as texture (ghost project names, giant wordmark in footer)
+
+> **Source of truth:** the Pencil design file (`portfolio-web.pen`) contains the exact color, size, and position values. These docs summarize the semantic intent; when values differ, use the Pencil file.
 
 ---
 
@@ -178,13 +182,18 @@ All scroll-scrub, scramble, and clip-path effects **must** be disabled or reduce
 
 ## 7. Content Checklist (to fill in `data/*.ts`)
 
-- [ ] Lovary Commerce — description, tech stack, image, link
+- [ ] Lovary Commerce — description, tech stack (`CodeIgniter 3 · Docker · n8n`), image, link
 - [ ] BlackBoxGym Mobile App — description, tech stack, image, link
 - [ ] miniEcom API Prototype — description, link
 - [ ] miniBookTicket Concurrent — description, link
 - [ ] Offline Attendance System — description, link
 - [ ] Production VPS Migration — description, link
+- [ ] Inkindo Academy LMS — description, link
 - [ ] Experience: Junior Programmer (Apr 2025–now), Full-Stack Developer Intern (Sep–Dec 2024)
 - [ ] Education: Bachelor of Informatics, Universitas AMIKOM Yogyakarta, GPA 3.84/4.00
 - [ ] Skills groups: Laravel/Go, PostgreSQL/Redis, React/TypeScript, Flutter/Expo, Docker/Nginx
 - [ ] Contact: email, GitHub, LinkedIn, resume link
+- [ ] Image assets: copy from `assets/` to `public/images/`
+  - `circular-pp.png` → `rizky-inline-portrait.png`
+  - `lovary-web-commerce-app.png` → `lovary-jewelry-ecommerce.png`
+  - `blackbox-gym-app.png` → `blackboxgym-mobile-app.png`
