@@ -14,7 +14,7 @@
           <span data-hero-type>Hi, I'm</span>
         </span>
         <div
-          class="relative h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
+          class="relative h-16 w-16 md:h-18 md:w-18 lg:h-20 lg:w-20"
         >
           <div
             data-hero-portrait-frame
@@ -24,7 +24,7 @@
               src="/images/rizky-inline-portrait.png"
               alt="Rizky portrait"
               class="h-full w-full object-cover"
-              sizes="72px"
+              sizes="80px"
             />
           </div>
         </div>
@@ -47,17 +47,24 @@
         >
           <span data-hero-type>building reliable products</span>
         </span>
-        <UnderlineDraw
-          ref="underline"
-          :autoplay="false"
-          class="font-sans text-[36px] font-medium leading-[1.1] tracking-[-1.5px] text-accent md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
-        >
-          <span data-hero-type>with AI.</span>
-        </UnderlineDraw>
+        <span class="relative inline-block">
+          <UnderlineDraw
+            ref="underline"
+            :autoplay="false"
+            class="font-sans text-[36px] font-medium leading-[1.1] tracking-[-1.5px] text-accent md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
+          >
+            <span data-hero-type>with AI.</span>
+          </UnderlineDraw>
+          <span
+            ref="finalCursor"
+            aria-hidden="true"
+            class="pointer-events-none invisible absolute left-[calc(100%+2px)] top-1/2 h-[0.78em] w-[0.2em] -translate-y-1/2 bg-accent font-sans text-[36px] md:text-[48px] lg:text-[60px]"
+          />
+        </span>
       </div>
 
       <span
-        ref="cursor"
+        ref="typingCursor"
         aria-hidden="true"
         class="pointer-events-none invisible absolute left-0 top-0 h-[0.78em] w-[0.2em] bg-current font-sans text-[36px] md:text-[48px] lg:text-[60px]"
       />
@@ -109,7 +116,8 @@ const PORTRAIT_REST_SCALE = 1 / PORTRAIT_PULSE_SCALE
 
 const heroScope = useTemplateRef<HTMLElement>('heroScope')
 const headingScope = useTemplateRef<HTMLElement>('headingScope')
-const cursor = useTemplateRef<HTMLSpanElement>('cursor')
+const typingCursor = useTemplateRef<HTMLSpanElement>('typingCursor')
+const finalCursor = useTemplateRef<HTMLSpanElement>('finalCursor')
 const underline = useTemplateRef<UnderlineController>('underline')
 const description = useTemplateRef<HTMLParagraphElement>('description')
 const actions = useTemplateRef<HTMLDivElement>('actions')
@@ -118,7 +126,8 @@ useScrollReveal(heroScope, () => {
   if (
     !heroScope.value
     || !headingScope.value
-    || !cursor.value
+    || !typingCursor.value
+    || !finalCursor.value
     || !description.value
     || !actions.value
   ) return
@@ -156,17 +165,17 @@ useScrollReveal(heroScope, () => {
   })
   gsap.set(actions.value, { visibility: 'visible' })
 
-  const positionCursor = (target: HTMLElement) => {
-    if (!headingScope.value || !cursor.value) return
+  const positionTypingCursor = (target: HTMLElement) => {
+    if (!headingScope.value || !typingCursor.value) return
 
     const headingBounds = headingScope.value.getBoundingClientRect()
     const targetBounds = target.getBoundingClientRect()
-    const cursorBounds = cursor.value.getBoundingClientRect()
+    const cursorBounds = typingCursor.value.getBoundingClientRect()
     const range = document.createRange()
     range.selectNodeContents(target)
     const textBounds = range.getBoundingClientRect()
 
-    gsap.set(cursor.value, {
+    gsap.set(typingCursor.value, {
       x: (textBounds.width ? textBounds.right : targetBounds.left) - headingBounds.left + 2,
       y: targetBounds.top - headingBounds.top + (targetBounds.height - cursorBounds.height) / 2,
       color: getComputedStyle(target).color,
@@ -174,7 +183,7 @@ useScrollReveal(heroScope, () => {
     })
   }
 
-  const blink = gsap.to(cursor.value, {
+  const blink = gsap.to(finalCursor.value, {
     autoAlpha: 0,
     duration: 0.55,
     ease: 'steps(1)',
@@ -214,14 +223,11 @@ useScrollReveal(heroScope, () => {
     )
 
     const words = gsap.utils.shuffle([...(wordSplit.words as HTMLElement[])])
-    const finalTarget = targets.at(-1)?.element
-    if (finalTarget) positionCursor(finalTarget)
-
     wordPulseTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1.8 })
 
     words.forEach((word, index) => {
       const pulseTargets = word.textContent === 'AI.'
-        ? [word, cursor.value]
+        ? [word, finalCursor.value]
         : word
 
       wordPulseTimeline?.to(pulseTargets, {
@@ -243,7 +249,7 @@ useScrollReveal(heroScope, () => {
   let time = 0
 
   targets.forEach(({ element, text }, targetIndex) => {
-    timeline.call(() => positionCursor(element), [], time)
+    timeline.call(() => positionTypingCursor(element), [], time)
 
     let typed = ''
     const characters = Array.from(text)
@@ -254,7 +260,7 @@ useScrollReveal(heroScope, () => {
 
       timeline.call(() => {
         element.textContent = nextText
-        positionCursor(element)
+        positionTypingCursor(element)
       }, [], time)
 
       if (characterIndex < characters.length - 1) {
@@ -275,10 +281,9 @@ useScrollReveal(heroScope, () => {
       element.style.removeProperty('width')
     })
 
-    const finalTarget = targets.at(-1)?.element
-    if (finalTarget) positionCursor(finalTarget)
-
     underline.value?.play()
+    gsap.set(typingCursor.value, { autoAlpha: 0 })
+    gsap.set(finalCursor.value, { autoAlpha: 1 })
     blink.play(0)
   }, [], time)
 
@@ -323,7 +328,8 @@ useScrollReveal(heroScope, () => {
       element.style.removeProperty('visibility')
     })
 
-    cursor.value?.removeAttribute('style')
+    typingCursor.value?.removeAttribute('style')
+    finalCursor.value?.removeAttribute('style')
   }
 })
 </script>
