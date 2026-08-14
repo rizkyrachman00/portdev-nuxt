@@ -1,5 +1,5 @@
 <template>
-  <section class="relative w-full px-5 py-[100px] md:px-10 lg:px-20 lg:py-[120px]">
+  <section class="relative w-full px-5 py-[100px] md:px-10 md:py-[120px] lg:px-20 lg:py-[160px]">
     <div class="mx-auto w-full max-w-[1120px]">
       <!-- Introduction -->
       <div class="relative mb-10 lg:mb-[30px]">
@@ -28,7 +28,7 @@
       <div class="relative">
         <!-- Vertical spine -->
         <div
-          class="absolute left-[28px] top-[26px] h-[calc(100%-52px)] w-px bg-ink-200 sm:left-[36px] lg:left-[334px] lg:top-[30px]"
+          class="absolute left-[66px] top-[14px] h-[calc(100%-28px)] w-px -translate-x-1/2 bg-ink-200 sm:left-[86px] lg:left-[335px] lg:top-[18px] lg:h-[calc(100%-36px)]"
           aria-hidden="true"
         />
 
@@ -36,7 +36,7 @@
           <li
             v-for="step in processSteps"
             :key="step.index"
-            class="border-t border-ink-200 py-5 first:border-t-0 lg:py-6"
+            class="border-t border-ink-200 py-5 lg:py-6"
           >
             <ProcessStep :step="step" />
           </li>

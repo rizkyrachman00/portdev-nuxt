@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex min-h-[520px] w-full flex-col items-center justify-center gap-5 px-5 py-10 md:min-h-[600px] md:gap-[30px] md:py-[52px] lg:min-h-[690px]"
+    class="flex min-h-[520px] w-full flex-col items-center justify-center gap-5 px-5 py-[80px] md:min-h-[600px] md:gap-[30px] md:py-[100px] lg:min-h-[690px] lg:py-[120px]"
   >
     <div class="flex w-full max-w-[1040px] flex-col items-center gap-1 md:gap-2">
       <div class="flex items-center gap-3 md:gap-4">

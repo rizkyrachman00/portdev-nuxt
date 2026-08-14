@@ -1,5 +1,5 @@
 <template>
-  <section class="flex w-full flex-col items-center gap-16 px-5 pt-24 pb-16 md:px-10 md:pt-32 md:pb-20 lg:gap-[120px] lg:px-20 lg:pt-[160px] lg:pb-[96px]">
+  <section class="flex w-full flex-col items-center gap-16 px-5 py-[100px] md:px-10 md:py-[120px] lg:gap-[120px] lg:px-20 lg:py-[160px]">
     <div class="relative w-full max-w-[1120px] lg:h-[300px]">
       <div class="flex flex-col gap-1">
         <h2
