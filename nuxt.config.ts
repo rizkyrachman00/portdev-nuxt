@@ -24,6 +24,10 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', type: 'image/x-icon', href: '/apple-touch-icon.ico' },
+      ],
       script: [
         { innerHTML: "document.documentElement.classList.add('has-js')" },
       ],
