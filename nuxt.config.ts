@@ -40,6 +40,19 @@ export default defineNuxtConfig({
   },
 
   icon: {
-    serverBundle: 'remote',
+    clientBundle: {
+      scan: true,
+    },
   },
+
+  image: {
+    provider: 'none',
+  },
+
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
 })
