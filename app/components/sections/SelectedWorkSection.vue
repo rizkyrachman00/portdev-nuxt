@@ -8,12 +8,12 @@
         <span
           data-work-focus-rail
           aria-hidden="true"
-          class="pointer-events-none absolute -left-3 top-0 h-full w-px origin-top bg-accent"
+          class="invisible pointer-events-none absolute -left-3 top-0 h-full w-px origin-top bg-accent"
         />
         <span
           data-work-focus-node
           aria-hidden="true"
-          class="pointer-events-none absolute -left-[15px] top-0 h-1.5 w-1.5 rounded-full bg-accent"
+          class="invisible pointer-events-none absolute -left-[15px] top-0 h-1.5 w-1.5 rounded-full bg-accent"
         />
         <h2
           data-work-heading-line

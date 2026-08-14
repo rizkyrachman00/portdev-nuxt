@@ -1,5 +1,9 @@
 <template>
-  <article ref="chapterScope" class="relative w-full">
+  <article
+    ref="chapterScope"
+    class="relative w-full"
+    :data-project-image-position="imagePosition"
+  >
     <div
       v-if="topAsideProject"
       data-project-aside

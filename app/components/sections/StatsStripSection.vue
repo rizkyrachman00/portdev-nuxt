@@ -10,12 +10,12 @@
       <span
         data-stats-signal-line
         aria-hidden="true"
-        class="pointer-events-none absolute -top-px left-0 h-px w-full origin-left bg-accent"
+        class="invisible pointer-events-none absolute -top-px left-0 h-px w-full origin-left bg-accent"
       />
       <span
         data-stats-signal-node
         aria-hidden="true"
-        class="pointer-events-none absolute -top-[3px] left-0 h-1.5 w-1.5 rounded-full bg-accent"
+        class="invisible pointer-events-none absolute -top-[3px] left-0 h-1.5 w-1.5 rounded-full bg-accent"
       />
 
       <div data-stats-item class="flex flex-col gap-[7px]">
