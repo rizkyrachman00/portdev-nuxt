@@ -24,3 +24,9 @@ export interface SkillGroup {
   index: string
   label: string
 }
+
+export interface ProcessStep {
+  index: string
+  title: string
+  description: string
+}
