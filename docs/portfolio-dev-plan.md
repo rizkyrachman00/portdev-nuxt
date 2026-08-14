@@ -1,7 +1,7 @@
 # Portfolio Development Plan — Nuxt Build
 
 AI guidance doc for building Rizky's portfolio in Nuxt. Use alongside
-`design-system.md` (visual/design tokens reference). This doc covers stack,
+`design-system-portfolio.md` (visual/design tokens reference). This doc covers stack,
 architecture, motion system, and build sequence — read both before
 generating any code.
 
@@ -26,11 +26,11 @@ generating any code.
 | Runtime / package manager | `bun` | Install, run, and build scripts (replaces Node + pnpm) |
 | Framework | `nuxt` (v4, latest stable) | Core framework, `app/` directory structure |
 | Styling | `@nuxtjs/tailwindcss` (Tailwind v4) | Utility-first styling matching design tokens |
-| Fonts | `@nuxt/fonts` | Self-hosted variable font (Inter Variable / General Sans Variable) — required for weight-morph headline effect |
+| Fonts | `@nuxt/fonts` | Geist and Geist Mono — Geist provides the variable weight axis used by the headline scrub effect |
 | Icons | `@nuxt/icon` | Iconify access for arrows/chevrons (Lucide/Phosphor set) |
 | Smooth scroll | `lenis` | Inertial scroll feel |
 | Scroll/text motion | `gsap` (includes `ScrollTrigger`, `SplitText` — free since GSAP 3.13) | All scroll-driven reveal animations |
-| Image optimization | `@nuxt/image` | Optimizes project mockup screenshots |
+| Images | `@nuxt/image` | Nuxt image components; production optimization is deferred to Phase 5 |
 | Content (optional, later) | `@nuxt/content` | Only if projects move to markdown-managed content later — not needed for v1 |
 
 Do not add: Spline, Three.js, any 3D/WebGL library, any animation library beyond GSAP + Lenis, any component library. These were explicitly evaluated and rejected for this project — see rationale in section 5.
@@ -46,45 +46,50 @@ Do not add: Spline, Three.js, any 3D/WebGL library, any animation library beyond
 │   │       └── main.css              # Tailwind entry + CSS custom properties (design tokens)
 │   ├── components/
 │   │   ├── layout/
-│   │   │   ├── AppHeader.vue
-│   │   │   └── AppFooter.vue
+│   │   │   └── AppHeader.vue
 │   │   ├── sections/
 │   │   │   ├── HeroSection.vue
 │   │   │   ├── StatsStripSection.vue
 │   │   │   ├── SelectedWorkSection.vue
 │   │   │   ├── AiProcessSection.vue
 │   │   │   ├── ExperienceSection.vue
-│   │   │   ├── SkillsStripSection.vue
 │   │   │   └── ContactSection.vue
 │   │   ├── ui/
-│   │   │   ├── ButtonBase.vue          # primary/secondary/accent variants
-│   │   │   ├── StatusBadge.vue         # "Open to opportunities" pill
-│   │   │   ├── SectionEyebrow.vue      # small caps label
-│   │   │   ├── ProjectCard.vue
-│   │   │   ├── TimelineItem.vue
-│   │   │   └── SkillItem.vue
+│   │   │   ├── ButtonBase.vue
+│   │   │   ├── Container.vue
+│   │   │   ├── FadeHeading.vue
+│   │   │   ├── FeaturedProjectCard.vue
+│   │   │   ├── ProcessStep.vue
+│   │   │   ├── ProjectChapter.vue
+│   │   │   ├── ProjectIndexRow.vue
+│   │   │   ├── SectionEyebrow.vue
+│   │   │   ├── StatusBadge.vue
+│   │   │   └── TimelineItem.vue
 │   │   └── motion/
 │   │       ├── TextRevealClip.vue      # clip-path line reveal (default text motion)
 │   │       ├── TextWeightScrub.vue     # scroll-scrubbed variable font weight (signature headlines)
 │   │       ├── ScrambleNumber.vue      # decode-in effect for numerals
 │   │       └── UnderlineDraw.vue       # self-drawing underline for accent phrases
 │   ├── composables/
-│   │   ├── useLenis.ts                # smooth scroll init/teardown
+│   │   ├── useLenisGsapSync.ts        # synchronize VueLenis with GSAP's ticker
 │   │   ├── useScrollReveal.ts          # shared ScrollTrigger setup helper
 │   │   └── useReducedMotion.ts         # prefers-reduced-motion guard
 │   ├── data/
-│   │   ├── projects.ts                 # typed project entries
+│   │   ├── contact.ts                  # contact and social links
 │   │   ├── experience.ts               # typed roles/education entries
+│   │   ├── process.ts                  # AI-assisted engineering process
+│   │   ├── projects.ts                 # typed project entries
 │   │   └── skills.ts                   # typed skill groups
 │   ├── layouts/
 │   │   └── default.vue
 │   ├── pages/
 │   │   └── index.vue                   # composes all sections, kept short
+│   ├── plugins/
+│   │   └── gsap.client.ts              # client-only GSAP plugin registration
 │   ├── types/
 │   │   └── index.ts                    # Project, ExperienceItem, SkillGroup interfaces
 │   └── app.vue
 ├── nuxt.config.ts
-├── tailwind.config.ts
 ├── package.json
 └── bun.lock
 ```
@@ -99,19 +104,23 @@ Do not add: Spline, Three.js, any 3D/WebGL library, any animation library beyond
 - Props: fully typed via `defineProps<{...}>()`, no `any`
 - One landing-page block = one component in `sections/`; `pages/index.vue` only composes them
 - Content lives in typed `data/*.ts` files, never hardcoded in templates
-- Design tokens defined once as CSS custom properties in `main.css`, mapped into `tailwind.config.ts`
+- Design tokens defined once through Tailwind v4's `@theme` in `main.css`
 
 ---
 
-## 4. Design Tokens (summary — full detail in design-system.md)
+## 4. Design Tokens (summary — full detail in design-system-portfolio.md)
 
-- Background: cream/off-white (`#F7F5F1`), never pure white
-- Ink scale: `900` (headings) → `700` (sub-text) → `400` (muted/faded headings) → `200` (ghost text/dividers)
-- Single accent: warm orange (`#E8622C`) — used only for emphasis words, numerals, CTA fills
-- Typography: humanist sans (Inter Variable or General Sans Variable), large display headings, small letter-spaced caps labels
+- Background: cream/off-white (`#FBFBFA`), never pure white
+- Ink scale: `900` (`#151515`) → `700` (`#686865`) → `400` (`#AAA9A5`) → `200` (`#E7E7E3`)
+- Single accent: warm orange (`#F36B16`) — used only for emphasis words, numerals, CTA fills
+- Muted accent: `#F36B1648` for large step numerals
+- Success dot: `#28C985`
+- Typography: **Geist** variable sans for body/headings, **Geist Mono** for labels/indexes/dates, large display headings, small letter-spaced caps labels
 - Signature pattern: bold heading line + same-size lighter-gray line beneath (fade hierarchy) — this pattern is also the basis for the weight-morph motion effect (section 5)
 - Buttons: fully rounded pills, not sharp corners
 - Oversized faded background typography as texture (ghost project names, giant wordmark in footer)
+
+> **Source of truth:** the Pencil design file (`portfolio-web.pen`) contains the exact color, size, and position values. These docs summarize the semantic intent; when values differ, use the Pencil file.
 
 ---
 
@@ -119,17 +128,22 @@ Do not add: Spline, Three.js, any 3D/WebGL library, any animation library beyond
 
 ### Rejected approaches (with reasoning, so AI doesn't reintroduce them)
 - **Spline / Three.js** — no 3D elements in this design; would add unnecessary runtime weight and visually clash with the minimal aesthetic
-- **Typewriter effect** — dated, overused
 - **Plain opacity fade-up** — the default in nearly every Framer/Webflow template; not distinctive
 - **Bouncy/elastic easing** — reads as playful, clashes with the calm/credible tone
 - **Character-stagger skew reveals** — increasingly common in GSAP portfolio templates specifically; avoid as a primary technique, not rare anymore
+
+The approved hero typewriter is an explicit exception. It is justified by the
+AI-assisted narrative, preserves the final layout width during typing, and
+must not be reused for other sections without user approval.
 
 ### Chosen techniques
 
 | Element | Technique | Notes |
 |---|---|---|
+| Hero headline, portrait, copy, and CTAs | **Sequenced hero entrance** — width-preserving character typing, solid-to-blinking cursor, underline draw, blur-resolved copy, then overlapping CTA reveals | Hero-only exception. The portrait breathes independently throughout. |
+| Completed hero headline | **Random isolated word pulses** — one shuffled word scales to `1.01` and returns fully to rest before the next | Start only after the entrance. Pause between words and cycles; pulse the cursor with `AI.` and keep the underline static. |
 | 2–3 main section headlines (e.g. "Selected work.", "AI moves fast.") | **Scroll-scrubbed variable font weight** — `font-variation-settings` driven directly by scroll position, not time | Signature move. Directly extends the design's own bold→gray fade pattern into motion — this is why it reads intentional rather than templated. Requires a variable font. |
-| Hero lines & body paragraphs | **Clip-path line reveal** — `clip-path: inset()` animates from covering the line to fully revealed, no opacity fade | Quiet default reveal used everywhere else. Hard-edged reveal, not soft. |
+| Non-hero headings and body paragraphs | **Clip-path line reveal** — masked lines translate into view | Quiet default reveal used outside the hero. Hard-edged reveal, not soft. |
 | "with AI" accent phrase | **Self-drawing underline** — SVG stroke with `stroke-dashoffset` animated on scroll-into-view | Small, cheap, distinctive detail |
 | Numbers (≈2, 01–04, date ranges) | **Scramble/decode-in** — random characters settle into the real value | Use sparingly, only on numerals/short labels — ties into "AI-assisted" narrative without being a template cliché |
 | Ghost background typography | **Slow parallax only**, no reveal animation | It's texture, not content — should feel passively present |
@@ -140,51 +154,64 @@ Do not add: Spline, Three.js, any 3D/WebGL library, any animation library beyond
 - Stagger sequences kept under ~400ms total — long staggers feel slow/templated
 - No bounce, no elastic, no overshoot on text motion
 - Direction-aware reveals where practical (reveal direction respects scroll direction on repeat views)
+- The approved hero typing and ambient word-pulse timelines are explicit
+  exceptions to the general stagger-duration limit. Each individual pulse must
+  still return fully to rest before another starts.
 
 ### Accessibility requirement
-All scroll-scrub, scramble, and clip-path effects **must** be disabled or reduced to simple opacity fades when `prefers-reduced-motion: reduce` is set. Implement via the `useReducedMotion` composable and check it before initializing any GSAP timeline.
+All hero, scroll-scrub, scramble, and clip-path effects **must** be disabled
+when `prefers-reduced-motion: reduce` is set. Render the final static state.
+Implement the guard through `useReducedMotion` before initializing GSAP.
 
 ---
 
 ## 6. Build Sequence
 
-**Phase 1 — Scaffold**
+**Phase 1 — Scaffold (complete)**
 - `bunx nuxi init`, then `bun install` for the full stack listed in section 2
-- Configure Tailwind tokens from `design-system.md`
+- Configure Tailwind tokens from `design-system-portfolio.md`
 - Set up folder structure exactly as in section 3
 - Build typed `data/*.ts` files from real project content
 
-**Phase 2 — Static layout (no motion)**
+**Phase 2 — Static layout (complete)**
 - Build every section component with correct structure/spacing/typography, matching the screenshot pixel-for-pixel
 - No animation yet — lock visual fidelity first so motion isn't built on top of an incorrect layout
 
-**Phase 3 — Motion infrastructure**
-- `useLenis` composable (init/teardown smooth scroll)
+**Phase 3 — Motion infrastructure (complete)**
+- `useLenisGsapSync` composable (VueLenis/GSAP ticker synchronization and teardown)
 - `useScrollReveal` composable (shared ScrollTrigger boilerplate)
 - `useReducedMotion` composable (accessibility guard)
 - Build the four reusable motion components in `components/motion/`
 
-**Phase 4 — Wire motion into sections**
+**Phase 4 — Wire motion into sections (active)**
 - Apply techniques per the table in section 5, section by section
 - Tune easing curves, timing, and stagger values by eye
+- The approved hero entrance and ambient word pulses are implemented.
+- Continue wiring the reusable motion components into non-hero sections only
+  after each preceding section receives user approval.
 
-**Phase 5 — Polish & performance**
+**Phase 5 — Polish & performance (pending)**
 - Verify `prefers-reduced-motion` fallback across all effects
 - Lighthouse pass; optimize project images via `@nuxt/image`
 - Font loading strategy check (variable font weight must be available for the scrub effect)
 - Cross-browser check — Safari can be inconsistent with `clip-path` + GSAP combinations, test explicitly
 
+### Current implementation alignment
+
+- Pencil remains authoritative for exact visual values.
+- The approved hero motion is documented in section 5 and in
+  `design-system-portfolio.md`.
+- Pencil specifies hero weight `650`; the current `HeroSection.vue` uses
+  `font-medium` (`500`). Correct the implementation later rather than changing
+  the documented design target.
+
 ---
 
-## 7. Content Checklist (to fill in `data/*.ts`)
+## 7. Content Status
 
-- [ ] Lovary Commerce — description, tech stack, image, link
-- [ ] BlackBoxGym Mobile App — description, tech stack, image, link
-- [ ] miniEcom API Prototype — description, link
-- [ ] miniBookTicket Concurrent — description, link
-- [ ] Offline Attendance System — description, link
-- [ ] Production VPS Migration — description, link
-- [ ] Experience: Junior Programmer (Apr 2025–now), Full-Stack Developer Intern (Sep–Dec 2024)
-- [ ] Education: Bachelor of Informatics, Universitas AMIKOM Yogyakarta, GPA 3.84/4.00
-- [ ] Skills groups: Laravel/Go, PostgreSQL/Redis, React/TypeScript, Flutter/Expo, Docker/Nginx
-- [ ] Contact: email, GitHub, LinkedIn, resume link
+- [x] Seven project records in `app/data/projects.ts`
+- [x] Current role, internship, and education in `app/data/experience.ts`
+- [x] Five skill groups in `app/data/skills.ts`
+- [x] Contact email and footer metadata in `app/data/contact.ts`
+- [x] Hero, Lovary, and BlackBoxGym images in `public/images/`
+- [ ] Replace placeholder `#` project, GitHub, LinkedIn, and resume links with final URLs

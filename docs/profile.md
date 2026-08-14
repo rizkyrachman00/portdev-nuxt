@@ -125,6 +125,12 @@ Relevant areas of study:
 
 ## Selected Projects
 
+### Lovary Commerce
+
+**CodeIgniter 3 · Docker · n8n**
+
+Extended a live jewelry platform across product and employee operations, Excel automation, payments, Biteship shipping, and referral tracking.
+
 ### miniBookTicket Concurrent
 
 **Go · Redis · Docker**
@@ -148,6 +154,17 @@ Thesis project implementing a split-stack mobile architecture for gym membership
 **CodeIgniter 4 · JavaScript · REST API · JWT · SCSS**
 
 Learning management system developed during a full-stack engineering internship.
+
+## Image Assets
+
+Required mockups for the portfolio build. Copy these from `assets/` into
+`public/images/`:
+
+| Final path in `public/images/` | Source asset in `assets/` | Usage |
+|---|---|---|
+| `rizky-inline-portrait.png` | `circular-pp.png` | Hero inline portrait |
+| `lovary-jewelry-ecommerce.png` | `lovary-web-commerce-app.png` | Featured web project mockup |
+| `blackboxgym-mobile-app.png` | `blackbox-gym-app.png` | Featured mobile project mockup |
 
 ## Career Direction
 
