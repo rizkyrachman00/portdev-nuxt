@@ -58,6 +58,29 @@ body {
     transform: translateY(6px);
   }
 
+  html.has-js [data-process-eyebrow],
+  html.has-js [data-process-number] {
+    visibility: hidden;
+  }
+
+  html.has-js [data-process-heading-line] {
+    opacity: 0.45;
+  }
+
+  html.has-js [data-process-copy] {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  html.has-js [data-process-title],
+  html.has-js [data-process-description] {
+    opacity: 0.35;
+  }
+
+  html.has-js [data-process-dot] {
+    opacity: 0.25;
+    transform: scale(0.65);
+  }
+
   @media (min-width: 1024px) {
     html.has-js [data-project-image-position="right"] [data-project-media] {
       clip-path: inset(0% 100% 0% 0%);
