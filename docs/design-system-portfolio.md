@@ -74,6 +74,10 @@ create the fade-heading effect. Use these exact hex values:
   (≈2, 01–04) — oversized relative to their label text, orange. Muted step
   numerals use `--accent-muted` (`#F36B1648`).
 
+Implementation alignment: Pencil's intended hero weight is `650`. The current
+hero uses Tailwind's `font-medium` (`500`); treat that as a pending code
+correction, not a change to the design target.
+
 **Weight pairing pattern**: within one heading block, mix a bold/black line
 with a lighter gray line directly below it of the *same size* — this fade
 effect is a signature move of this design. Use the fade opacity scale above
@@ -157,8 +161,8 @@ rather than separate gray hues.
 
 ## 6. Image Assets
 
-Required mockups for the selected-work section. Copy these from `assets/`
-into `public/images/` before Phase 2 layout:
+The required mockups for the selected-work section are present in
+`public/images/`. Their original files remain in `assets/`:
 
 | Final path in `public/images/` | Source asset in `assets/` | Usage |
 |---|---|---|
@@ -171,12 +175,44 @@ can be used later for secondary project rows as the build expands.
 
 ---
 
-## 7. Motion / Interaction Cues (inferred, not fully visible in static image)
+## 7. Motion / Interaction
 
-- Likely subtle fade/slide-up on scroll for section reveals (common with
-  this aesthetic) — not confirmed from the screenshot, treat as optional.
-- Hover states on links likely underline or shift to accent orange.
-- Status pill dot likely pulses/animates subtly to signal "live" availability.
+Motion must remain calm, deliberate, and secondary to the typography. The hero
+uses a custom entrance sequence; other sections use the reusable motion system
+described in `portfolio-dev-plan.md`.
+
+### Approved hero sequence
+
+1. Type the headline character by character at `35ms` per character, with a
+   `120ms` pause after each completed row. Reserve each text target's final
+   width before typing so the portrait and surrounding words never reflow.
+2. Keep a narrow solid cursor visible during typing. After the final character,
+   blink it every `550ms`.
+3. Draw the `with AI.` underline over `600ms`. It remains static after drawing.
+4. Start the supporting copy `80ms` after the underline finishes. Resolve it
+   from a `6px` blur over `1.3s` using the editorial ease.
+5. Reveal the primary CTA over `550ms`, then start the secondary CTA `180ms`
+   later and reveal it over `650ms`.
+6. Keep the portrait on an independent `3.2s` sine breathing pulse.
+7. After the entrance sequence, split the completed headline into words and
+   shuffle their order once. Pulse one word at a time from scale `1` to `1.01`
+   over `280ms`, return it fully to rest over `450ms`, then wait `120ms` before
+   the next word. Pause `1.8s` after a complete cycle.
+8. Pulse the cursor with `AI.` only. Never pulse or move the underline.
+
+The typewriter treatment is a hero-only exception. Do not reuse it elsewhere.
+
+### Shared motion rules
+
+- Use clip-path line reveals as the quiet default for non-hero text.
+- Use scroll-scrubbed variable font weight only for selected display headings.
+- Use scramble/decode effects sparingly on numerals and short labels.
+- Keep ghost typography to slow parallax only.
+- Use a CSS-only pulse for the navigation status dot.
+- Use the registered `editorial` ease for entrance and reveal motion; avoid
+  bounce, elastic, and decorative overshoot.
+- Disable the complete hero sequence and all scroll-driven motion when
+  `prefers-reduced-motion: reduce` is active. Render the final static state.
 
 ---
 

@@ -20,9 +20,9 @@ Read these before every session and before making changes:
 - Read this `AGENTS.md` at the start of every session.
 - Follow existing docs; do not invent new visual or architectural directions.
 - Apply the design system exactly:
-  - Background: cream `#F7F5F1`
-  - Ink scale: `#111111` → `#3A3A3A` → `#9A9A96` → `#D8D6D0`
-  - One accent: warm orange `#E8622C`
+  - Background: cream `#FBFBFA`
+  - Ink scale: `#151515` → `#686865` → `#AAA9A5` → `#E7E7E3`
+  - One accent: warm orange `#F36B16`
   - Fade-heading hierarchy: bold/dark line + same-size lighter-gray line beneath
   - Oversized ghost typography as background texture
   - Fully rounded pill buttons, no sharp corners
@@ -36,7 +36,7 @@ Read these before every session and before making changes:
 - Framework: Nuxt 4 (SSG via `nuxt generate`)
 - Package manager: Bun
 - Styling: Tailwind CSS v4, hand-rolled, no component library
-- Fonts: `@nuxt/fonts` with self-hosted variable font (Inter or General Sans)
+- Fonts: `@nuxt/fonts` with Geist and Geist Mono
 - Icons: `@nuxt/icon` with Lucide/Phosphor line-style icons only
 - Animation: GSAP + ScrollTrigger + SplitText + Lenis
 - Images: `@nuxt/image`
@@ -74,12 +74,29 @@ Follow the phases from `docs/portfolio-dev-plan.md` exactly. Do not skip or mix 
 
 **Phase lock:** the current active phase must be respected. Do not start work from a later phase until the user explicitly approves it.
 
+**Current active phase:** Phase 4 — Wire motion into sections.
+
+## Approved Hero Motion
+
+The hero is an explicit exception to the default clip-reveal treatment used elsewhere:
+
+- Type the headline character by character while preserving its final layout width.
+- Show a solid cursor during typing, then blink it after the final character.
+- Draw the `with AI.` underline after typing; keep it static afterward.
+- Blur-resolve the supporting copy, then reveal the CTA buttons sequentially.
+- Keep the portrait on a subtle continuous breathing pulse.
+- After the entrance sequence, pulse one randomly ordered headline word at a time with a full return to rest between words and between cycles.
+- Pulse the cursor with `AI.` only; never pulse the underline.
+- Disable the complete hero motion sequence for `prefers-reduced-motion: reduce`.
+
+Do not reuse the hero typewriter treatment elsewhere unless the user explicitly approves it.
+
 ## Code Style
 
 - Components: PascalCase, role-prefixed (e.g. `HeroSection.vue`, `ProjectCard.vue`)
 - Props: fully typed via `defineProps<{...}>()`, no `any`
 - Content: store in typed `app/data/*.ts` files, never hardcoded in templates
-- Design tokens: define once in `app/assets/css/main.css`, map into `tailwind.config.ts`
+- Design tokens: define once in `app/assets/css/main.css` through Tailwind v4's `@theme`
 - Motion: always guard with `prefers-reduced-motion` via `useReducedMotion`
 
 ## Content Sync Checklist

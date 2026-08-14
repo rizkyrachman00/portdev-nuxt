@@ -1,75 +1,45 @@
-# Nuxt Minimal Starter
+# Rizky Portfolio
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Personal portfolio for Muhammad Rizky Rachman, a Full-Stack and Mobile
+Engineer specializing in reliable backend-oriented products.
+
+The site is a static Nuxt 4 application built with Tailwind CSS, GSAP,
+ScrollTrigger, SplitText, Lenis, and Nuxt image components. Bun is the only
+supported package manager and command runner.
 
 ## Setup
 
-Make sure to install dependencies:
-
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
 bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Development
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
 bun run dev
 ```
 
-## Production
+The local site runs at `http://localhost:3000`.
 
-Build the application for production:
+## Verification
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+bunx nuxi typecheck
+bun run generate
 ```
 
-Locally preview production build:
+`bun run generate` writes the deployable static site to `.output/public`.
+
+## Preview
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Sources Of Truth
+
+1. [`docs/profile.md`](docs/profile.md) — professional content and assets
+2. [`docs/design-system-portfolio.md`](docs/design-system-portfolio.md) — visual system and approved motion
+3. [`docs/portfolio-dev-plan.md`](docs/portfolio-dev-plan.md) — architecture, stack, and build phases
+4. [`AGENTS.md`](AGENTS.md) — project workflow and implementation constraints
+5. `../pencil-design/portfolio-web.pen` — exact visual reference; Pencil values take precedence when documents differ

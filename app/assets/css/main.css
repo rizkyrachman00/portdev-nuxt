@@ -22,3 +22,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  html.has-js [data-hero-type],
+  html.has-js [data-hero-followup],
+  html.has-js [data-underline-path] {
+    visibility: hidden;
+  }
+}
