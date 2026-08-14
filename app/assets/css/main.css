@@ -81,6 +81,43 @@ body {
     transform: scale(0.65);
   }
 
+  html.has-js [data-experience-metric-mark] {
+    opacity: 0.35;
+  }
+
+  html.has-js [data-experience-metric-number],
+  html.has-js [data-experience-skill-index] {
+    visibility: hidden;
+  }
+
+  html.has-js [data-experience-heading-line] {
+    font-variation-settings: "wght" 420;
+    opacity: 0.4;
+  }
+
+  html.has-js [data-experience-copy] {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  html.has-js [data-experience-date],
+  html.has-js [data-experience-role],
+  html.has-js [data-experience-description] {
+    filter: blur(1px);
+  }
+
+  html.has-js [data-experience-date] {
+    letter-spacing: 1.2px;
+  }
+
+  html.has-js [data-experience-dot] {
+    opacity: 0.25;
+    transform: scale(0.65);
+  }
+
+  html.has-js [data-experience-skill-label] {
+    font-weight: 400;
+  }
+
   @media (min-width: 1024px) {
     html.has-js [data-project-image-position="right"] [data-project-media] {
       clip-path: inset(0% 100% 0% 0%);

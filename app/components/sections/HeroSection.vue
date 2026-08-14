@@ -7,11 +7,16 @@
       ref="headingScope"
       class="relative flex w-full max-w-[1040px] flex-col items-center gap-1 md:gap-2"
     >
-      <div class="flex items-center gap-3 md:gap-4">
+      <div class="flex max-w-full items-center gap-3 md:gap-4">
         <span
-          class="font-sans text-[36px] font-medium leading-[1.1] tracking-[-1.5px] text-ink-900 md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
+          class="min-w-0 font-sans text-[clamp(28px,9vw,36px)] font-medium leading-[1.1] tracking-[-1.5px] text-ink-900 md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
         >
-          <span data-hero-type>Hi, I'm</span>
+          <span data-hero-type class="relative inline-grid min-w-0 max-w-full grid-cols-[minmax(0,1fr)] align-baseline">
+            <span data-hero-sizer aria-hidden="true" class="invisible col-start-1 row-start-1 min-w-0">Hi, I'm</span>
+            <span data-hero-typed-layer class="col-start-1 row-start-1 min-w-0">
+              <span data-hero-text>Hi, I'm</span>
+            </span>
+          </span>
         </span>
         <div
           class="relative h-16 w-16 md:h-18 md:w-18 lg:h-20 lg:w-20"
@@ -29,44 +34,62 @@
           </div>
         </div>
         <span
-          class="font-sans text-[36px] font-medium leading-[1.1] tracking-[-1.5px] text-ink-900 md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
+          class="min-w-0 font-sans text-[clamp(28px,9vw,36px)] font-medium leading-[1.1] tracking-[-1.5px] text-ink-900 md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
         >
-          <span data-hero-type data-hero-row-end>Rizky.</span>
+          <span data-hero-type data-hero-row-end class="relative inline-grid min-w-0 max-w-full grid-cols-[minmax(0,1fr)] align-baseline">
+            <span data-hero-sizer aria-hidden="true" class="invisible col-start-1 row-start-1 min-w-0">Rizky.</span>
+            <span data-hero-typed-layer class="col-start-1 row-start-1 min-w-0">
+              <span data-hero-text>Rizky.</span>
+            </span>
+          </span>
         </span>
       </div>
 
       <span
-        class="font-sans text-[36px] font-medium leading-[1.1] tracking-[-1.5px] text-ink-900 md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
+        class="w-full max-w-full text-center font-sans text-[clamp(28px,9vw,36px)] font-medium leading-[1.1] tracking-[-1.5px] text-ink-900 md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
       >
-        <span data-hero-type data-hero-row-end>Full-Stack & Mobile Engineer</span>
+        <span data-hero-type data-hero-row-end class="relative inline-grid w-full min-w-0 max-w-full grid-cols-[minmax(0,1fr)] align-baseline">
+          <span data-hero-sizer aria-hidden="true" class="invisible col-start-1 row-start-1 min-w-0">Full-Stack & Mobile Engineer</span>
+          <span data-hero-typed-layer class="col-start-1 row-start-1 min-w-0">
+            <span data-hero-text>Full-Stack & Mobile Engineer</span>
+          </span>
+        </span>
       </span>
 
-      <div class="flex items-center gap-2 md:gap-3.5">
+      <div class="flex w-full max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 md:w-auto md:flex-nowrap md:gap-3.5">
         <span
-          class="font-sans text-[36px] font-medium leading-[1.1] tracking-[-1.5px] text-ink-400 md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
+          class="w-full min-w-0 max-w-full text-center font-sans text-[clamp(28px,9vw,36px)] font-medium leading-[1.1] tracking-[-1.5px] text-ink-400 md:w-auto md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
         >
-          <span data-hero-type>building reliable products</span>
+          <span data-hero-type class="relative inline-grid w-full min-w-0 max-w-full grid-cols-[minmax(0,1fr)] align-baseline md:w-auto">
+            <span data-hero-sizer aria-hidden="true" class="invisible col-start-1 row-start-1 min-w-0">building reliable products</span>
+            <span data-hero-typed-layer class="col-start-1 row-start-1 min-w-0">
+              <span data-hero-text>building reliable products</span>
+            </span>
+          </span>
         </span>
-        <span class="relative inline-block">
-          <UnderlineDraw
-            ref="underline"
-            :autoplay="false"
-            class="font-sans text-[36px] font-medium leading-[1.1] tracking-[-1.5px] text-accent md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
-          >
-            <span data-hero-type>with AI.</span>
-          </UnderlineDraw>
-          <span
-            ref="finalCursor"
-            aria-hidden="true"
-            class="pointer-events-none invisible absolute left-[calc(100%+2px)] top-1/2 h-[0.78em] w-[0.2em] -translate-y-1/2 bg-accent font-sans text-[36px] md:text-[48px] lg:text-[60px]"
-          />
-        </span>
+        <UnderlineDraw
+          ref="underline"
+          :autoplay="false"
+          class="min-w-0 max-w-full font-sans text-[clamp(28px,9vw,36px)] font-medium leading-[1.1] tracking-[-1.5px] text-accent md:text-[48px] md:tracking-[-2px] lg:text-[60px] lg:tracking-[-2.5px]"
+        >
+          <span data-hero-type class="relative inline-grid min-w-0 max-w-full grid-cols-[minmax(0,1fr)] align-baseline">
+            <span data-hero-sizer aria-hidden="true" class="invisible col-start-1 row-start-1 min-w-0">with AI.</span>
+            <span data-hero-typed-layer class="relative col-start-1 row-start-1 min-w-0">
+              <span data-hero-text>with AI.</span>
+              <span
+                ref="finalCursor"
+                aria-hidden="true"
+                class="pointer-events-none invisible absolute left-[calc(100%+2px)] top-1/2 h-[0.78em] w-[0.2em] -translate-y-1/2 bg-accent font-sans text-[clamp(28px,9vw,36px)] md:text-[48px] lg:text-[60px]"
+              />
+            </span>
+          </span>
+        </UnderlineDraw>
       </div>
 
       <span
         ref="typingCursor"
         aria-hidden="true"
-        class="pointer-events-none invisible absolute left-0 top-0 h-[0.78em] w-[0.2em] bg-current font-sans text-[36px] md:text-[48px] lg:text-[60px]"
+        class="pointer-events-none invisible absolute left-0 top-0 h-[0.78em] w-[0.2em] bg-current font-sans text-[clamp(28px,9vw,36px)] md:text-[48px] lg:text-[60px]"
       />
     </div>
 
@@ -134,21 +157,25 @@ useScrollReveal(heroScope, () => {
 
   const targets = Array.from(
     heroScope.value.querySelectorAll<HTMLElement>('[data-hero-type]'),
-  ).map((element) => ({
-    element,
-    text: element.textContent?.trim() ?? '',
-    width: element.getBoundingClientRect().width,
-  }))
+  ).flatMap((container) => {
+    const element = container.querySelector<HTMLElement>('[data-hero-text]')
+
+    return element
+      ? [{ container, element, text: element.textContent?.trim() ?? '' }]
+      : []
+  })
+
+  if (!targets.length) return
 
   const portraitFrame = heroScope.value.querySelector<HTMLElement>('[data-hero-portrait-frame]')
   const buttons = Array.from(actions.value.children)
   let wordPulseTimeline: gsap.core.Timeline | undefined
   let wordSplit: SplitText | undefined
+  let activeTypingTarget: HTMLElement | undefined
+  let typingComplete = false
 
-  targets.forEach(({ element, width }) => {
-    element.style.display = 'inline-block'
-    element.style.width = `${width}px`
-    element.style.visibility = 'visible'
+  targets.forEach(({ container, element }) => {
+    container.style.visibility = 'visible'
     element.textContent = ''
   })
 
@@ -168,20 +195,35 @@ useScrollReveal(heroScope, () => {
   const positionTypingCursor = (target: HTMLElement) => {
     if (!headingScope.value || !typingCursor.value) return
 
+    activeTypingTarget = target
+
     const headingBounds = headingScope.value.getBoundingClientRect()
     const targetBounds = target.getBoundingClientRect()
+    const layerBounds = target.closest<HTMLElement>('[data-hero-typed-layer]')
+      ?.getBoundingClientRect() ?? targetBounds
     const cursorBounds = typingCursor.value.getBoundingClientRect()
     const range = document.createRange()
     range.selectNodeContents(target)
-    const textBounds = range.getBoundingClientRect()
+    const textBounds = Array.from(range.getClientRects()).at(-1)
+    const lineHeight = textBounds?.height
+      || Number.parseFloat(getComputedStyle(target).lineHeight)
+      || layerBounds.height
+    const lineTop = textBounds?.top ?? layerBounds.top
 
     gsap.set(typingCursor.value, {
-      x: (textBounds.width ? textBounds.right : targetBounds.left) - headingBounds.left + 2,
-      y: targetBounds.top - headingBounds.top + (targetBounds.height - cursorBounds.height) / 2,
+      x: (textBounds?.right ?? layerBounds.left) - headingBounds.left + 2,
+      y: lineTop - headingBounds.top + (lineHeight - cursorBounds.height) / 2,
       color: getComputedStyle(target).color,
       autoAlpha: 1,
     })
   }
+
+  const headingObserver = new ResizeObserver(() => {
+    if (!typingComplete && activeTypingTarget) {
+      positionTypingCursor(activeTypingTarget)
+    }
+  })
+  headingObserver.observe(headingScope.value)
 
   const blink = gsap.to(finalCursor.value, {
     autoAlpha: 0,
@@ -248,7 +290,7 @@ useScrollReveal(heroScope, () => {
   const timeline = gsap.timeline()
   let time = 0
 
-  targets.forEach(({ element, text }, targetIndex) => {
+  targets.forEach(({ container, element, text }, targetIndex) => {
     timeline.call(() => positionTypingCursor(element), [], time)
 
     let typed = ''
@@ -269,18 +311,14 @@ useScrollReveal(heroScope, () => {
     })
 
     if (targetIndex < targets.length - 1) {
-      time += element.hasAttribute('data-hero-row-end')
+      time += container.hasAttribute('data-hero-row-end')
         ? ROW_DELAY
         : CHARACTER_DELAY
     }
   })
 
   timeline.call(() => {
-    targets.forEach(({ element }) => {
-      element.style.removeProperty('display')
-      element.style.removeProperty('width')
-    })
-
+    typingComplete = true
     underline.value?.play()
     gsap.set(typingCursor.value, { autoAlpha: 0 })
     gsap.set(finalCursor.value, { autoAlpha: 1 })
@@ -316,16 +354,15 @@ useScrollReveal(heroScope, () => {
   timeline.call(startWordPulses, [], '>')
 
   return () => {
+    headingObserver.disconnect()
     blink.kill()
     timeline.kill()
     wordPulseTimeline?.revert()
     wordSplit?.revert()
 
-    targets.forEach(({ element, text }) => {
+    targets.forEach(({ container, element, text }) => {
       element.textContent = text
-      element.style.removeProperty('display')
-      element.style.removeProperty('width')
-      element.style.removeProperty('visibility')
+      container.style.removeProperty('visibility')
     })
 
     typingCursor.value?.removeAttribute('style')

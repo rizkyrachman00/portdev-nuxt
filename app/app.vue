@@ -14,6 +14,8 @@ const lenisRoot = shallowRef<{ lenis?: Lenis } | null>(null)
 const lenisOptions: LenisOptions = {
   anchors: true,
   respectReducedMotion: true,
+  wheelMultiplier: 0.7,
+  lerp: 0.085,
 }
 
 useLenisGsapSync(lenisRoot)
