@@ -107,6 +107,7 @@ useScrollReveal(chapterScope, () => {
     start: string,
     end: string,
     scrub: number,
+    triggerElement: HTMLElement = chapter,
   ) => {
     gsap.set(media, { clipPath })
     gsap.set(image, { scale: 1.035, transformOrigin: 'center' })
@@ -125,7 +126,7 @@ useScrollReveal(chapterScope, () => {
 
     const timeline = gsap.timeline({
       scrollTrigger: {
-        trigger: chapter,
+        trigger: triggerElement,
         start,
         end,
         scrub,
@@ -202,7 +203,7 @@ useScrollReveal(chapterScope, () => {
   })
 
   mediaQueries.add('(max-width: 1023.98px)', () => {
-    createApertureTimeline('inset(100% 0% 0% 0%)', 'top 88%', 'top 40%', 0.9)
+    createApertureTimeline('inset(100% 0% 0% 0%)', 'top 88%', 'top 40%', 0.9, media)
 
     if (ghostTitle) {
       gsap.fromTo(ghostTitle, {
