@@ -30,3 +30,8 @@ export interface ProcessStep {
   title: string
   description: string
 }
+
+export interface ContactLink {
+  label: string
+  href: string
+}

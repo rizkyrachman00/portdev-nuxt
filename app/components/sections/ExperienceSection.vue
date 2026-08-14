@@ -2,21 +2,21 @@
   <section class="relative w-full px-5 py-[100px] md:px-10 md:py-[120px] lg:px-20 lg:py-[160px]">
     <div class="mx-auto w-full max-w-[1120px]">
       <!-- Headline block -->
-      <div class="relative mb-20 h-[200px] md:mb-24 md:h-[240px] lg:mb-[120px] lg:h-[210px]">
-        <span class="absolute left-0 top-0 text-[100px] font-medium leading-[0.9] tracking-[-5px] text-accent md:text-[120px] lg:text-[132px] lg:tracking-[-7px]">
+      <div class="mb-16 flex flex-col gap-6 md:mb-20 md:gap-8 lg:relative lg:mb-[120px] lg:block lg:h-[210px]">
+        <span class="text-[80px] font-medium leading-[0.85] tracking-[-4px] text-accent md:text-[100px] lg:absolute lg:left-0 lg:top-0 lg:text-[132px] lg:tracking-[-7px]">
           ≈2
         </span>
 
-        <div class="absolute left-[120px] top-[10px] flex flex-col md:left-[160px] lg:left-[190px] lg:top-[20px]">
-          <h2 class="text-[40px] font-medium leading-[1.3] tracking-[-2px] text-ink-900 md:text-[56px] lg:text-[68px] lg:tracking-[-2.8px]">
+        <div class="flex flex-col lg:absolute lg:left-[190px] lg:top-[20px]">
+          <h2 class="text-[40px] font-medium leading-[1.1] tracking-[-2px] text-ink-900 md:text-[56px] lg:leading-[1.3] lg:text-[68px] lg:tracking-[-2.8px]">
             YEARS OF PRODUCT
           </h2>
-          <h2 class="text-[40px] font-medium leading-[1.3] tracking-[-2px] text-[#15151540] md:text-[56px] lg:text-[68px] lg:tracking-[-2.8px]">
+          <h2 class="text-[40px] font-medium leading-[1.1] tracking-[-2px] text-[#15151540] md:text-[56px] lg:leading-[1.3] lg:text-[68px] lg:tracking-[-2.8px]">
             ENGINEERING.
           </h2>
         </div>
 
-        <p class="absolute bottom-0 right-0 max-w-[302px] text-[14px] leading-[1.5] text-ink-700">
+        <p class="max-w-[302px] text-[14px] leading-[1.5] text-ink-700 lg:absolute lg:bottom-0 lg:right-0">
           Hands-on experience across business systems, APIs, mobile workflows, infrastructure, and production delivery.
         </p>
       </div>
@@ -25,7 +25,7 @@
       <div class="relative">
         <!-- Vertical spine -->
         <div
-          class="absolute left-[60px] top-[24px] h-[calc(100%-48px)] w-px -translate-x-1/2 bg-ink-200 sm:left-[84px] md:left-[92px] lg:left-[243px]"
+          class="absolute left-[90px] top-[24px] h-[calc(100%-48px)] w-px -translate-x-1/2 bg-ink-200 sm:left-[138px] md:left-[138px] lg:left-[243px]"
           aria-hidden="true"
         />
 

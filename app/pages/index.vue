@@ -6,11 +6,6 @@
     <SelectedWorkSection />
     <AiProcessSection />
     <ExperienceSection />
-
-    <div class="flex min-h-[40vh] items-center justify-center">
-      <p class="text-ink-700">
-        More sections coming next.
-      </p>
-    </div>
+    <ContactSection />
   </main>
 </template>

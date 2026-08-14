@@ -2,7 +2,7 @@
   <component
     :is="to ? 'a' : 'button'"
     :href="to"
-    class="inline-flex items-center justify-center gap-2 md:gap-3 font-sans text-[14px] font-semibold transition-colors duration-200 md:text-[15px]"
+    class="inline-flex items-center justify-center gap-2 md:gap-3 font-sans text-[14px] transition-colors duration-200 md:text-[15px]"
     :class="variantClasses"
   >
     <Icon v-if="icon && iconPosition === 'left'" :name="icon" class="h-[17px] w-[17px]" />

@@ -54,13 +54,14 @@
     </p>
 
     <div class="flex flex-col items-center gap-3 md:flex-row md:gap-[18px]">
-      <ButtonBase variant="primary" icon="ph:arrow-down" iconPosition="right">
+      <ButtonBase variant="primary" icon="ph:arrow-down" iconPosition="right" class="font-light">
         View selected work
       </ButtonBase>
       <ButtonBase
         variant="secondary"
         icon="ph:download-simple"
         iconPosition="left"
+        class="font-light"
       >
         Download resume
       </ButtonBase>
