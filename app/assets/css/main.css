@@ -135,12 +135,12 @@ body {
 
   html.has-js [data-contact-cta] {
     opacity: 0;
-    clip-path: inset(0 50%);
+    transform: translate(32px, 22px) rotate(4deg) scale(0.96);
   }
 
-  html.has-js [data-contact-cta]:focus-visible {
+  html.has-js [data-contact-cta]:focus-within {
     opacity: 1 !important;
-    clip-path: inset(0 0%) !important;
+    transform: none !important;
   }
 
   html.has-js [data-contact-footer-rule] {

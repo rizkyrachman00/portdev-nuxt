@@ -20,16 +20,17 @@
           Open to engineering roles and thoughtful product collaborations across web and mobile.
         </p>
 
-        <ButtonBase
-          data-contact-cta
-          variant="accent"
-          :to="contactEmail"
-          icon="ph:arrow-up-right"
-          icon-position="right"
-          class="font-extralight"
-        >
-          Email me
-        </ButtonBase>
+        <div data-contact-cta class="flex self-start lg:self-auto">
+          <ButtonBase
+            variant="accent"
+            :to="contactEmail"
+            icon="ph:arrow-up-right"
+            icon-position="right"
+            class="-rotate-1 font-extralight lg:-rotate-2 [&_svg]:transition-transform [&_svg]:duration-300 hover:[&_svg]:translate-x-0.5 hover:[&_svg]:-translate-y-0.5"
+          >
+            LET'S TALK
+          </ButtonBase>
+        </div>
       </div>
 
       <!-- Footer -->
@@ -118,8 +119,11 @@ useScrollReveal(contactScope, () => {
   })
   gsap.set(copy, { clipPath: 'inset(0 100% 0 0)' })
   gsap.set(cta, {
-    opacity: 0,
-    clipPath: 'inset(0 50%)',
+    autoAlpha: 0,
+    x: 32,
+    y: 22,
+    rotate: 4,
+    scale: 0.96,
   })
   gsap.set(footerRule, { scaleX: 0 })
   gsap.set(footerContent, { autoAlpha: 0.35, y: 8 })
@@ -129,7 +133,7 @@ useScrollReveal(contactScope, () => {
       trigger: scope,
       start: 'top 82%',
       end: 'bottom bottom',
-      scrub: 1,
+      scrub: 1.1,
       invalidateOnRefresh: true,
     },
   })
@@ -151,34 +155,37 @@ useScrollReveal(contactScope, () => {
       ease: 'none',
     }, 0.42)
     .to(cta, {
-      opacity: 1,
-      clipPath: 'inset(0 0%)',
-      duration: 0.22,
-      ease: 'none',
-    }, 0.6)
+      autoAlpha: 1,
+      x: 0,
+      y: 0,
+      rotate: 0,
+      scale: 1,
+      duration: 0.24,
+      ease: 'sine.out',
+    }, 0.56)
     .to(footerRule, {
       scaleX: 1,
       duration: 0.16,
       ease: 'none',
-    }, 0.72)
+    }, 0.86)
     .to(footerContent, {
       autoAlpha: 1,
       y: 0,
       duration: 0.1,
       ease: 'none',
-    }, 0.84)
+    }, 0.98)
     .to(stamp, {
       scale: 1.8,
       duration: 0.03,
       ease: 'sine.out',
       force3D: true,
-    }, 0.94)
+    }, 1.08)
     .to(stamp, {
       scale: 1,
       duration: 0.03,
       ease: 'sine.inOut',
       force3D: true,
-    }, 0.97)
+    }, 1.11)
 
   gsap.fromTo(wordmark, {
     yPercent: 14,

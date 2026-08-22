@@ -159,6 +159,11 @@ rather than separate gray hues.
 - Short paragraph + orange CTA button on the same row.
 - Bottom bar: copyright + social links (GitHub, LinkedIn, Resume), all
   small caps, muted.
+- Contact CTA: an orange "LET'S TALK" pill with a plain line arrow and a
+  subtle resting tilt (`-1deg` mobile, `-2deg` desktop). On scroll-into-view
+  it settles in from a small translate/rotate/scale offset using the Stack
+  section's `sine.out` language — no hinge, clip, or looping motion. On hover
+  the line arrow nudges outward.
 - Oversized ghost wordmark of the name spanning full width beneath
   everything, heavily faded, cropped by viewport edge.
 

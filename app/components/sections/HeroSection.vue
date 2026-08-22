@@ -119,6 +119,7 @@
         icon="ph:arrow-down"
         iconPosition="right"
         class="font-light"
+        @click.prevent="scrollToSelectedWork"
       >
         View selected work
       </ButtonBase>
@@ -140,7 +141,22 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
+import { useLenis } from 'lenis/vue'
 import { resumeUrl } from '~/data/contact'
+
+const lenis = useLenis()
+
+function scrollToSelectedWork() {
+  const target = document.querySelector<HTMLElement>('#selected-work')
+  if (!target) return
+
+  if (lenis.value) {
+    lenis.value.scrollTo(target)
+    return
+  }
+
+  target.scrollIntoView()
+}
 
 type UnderlineController = {
   play: () => void

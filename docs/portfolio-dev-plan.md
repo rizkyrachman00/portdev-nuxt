@@ -149,6 +149,7 @@ must not be reused for other sections without user approval.
 | "with AI" accent phrase | **Self-drawing underline** — SVG stroke with `stroke-dashoffset` animated on scroll-into-view | Small, cheap, distinctive detail |
 | Numbers (≈2, 01–04, date ranges) | **Scramble/decode-in** — random characters settle into the real value | Use sparingly, only on numerals/short labels — ties into "AI-assisted" narrative without being a template cliché |
 | Ghost background typography | **Slow parallax only**, no reveal animation | It's texture, not content — should feel passively present |
+| Contact CTA | **Stack-style settle** | "LET'S TALK" pill drifts in from a small translate/rotate/scale offset and settles at a `-1deg`/`-2deg` resting tilt (`sine.out`). Line arrow nudges outward on hover. No hinge, clip, or looping animation. |
 | Nav status dot ("Open to opportunities") | **CSS-only pulse**, no JS | Continuous subtle animation, no scroll trigger needed |
 
 ### Timing/easing discipline (this matters more than the technique choice)
