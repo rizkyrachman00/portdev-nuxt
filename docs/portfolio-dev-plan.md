@@ -53,6 +53,7 @@ Do not add: Spline, Three.js, any 3D/WebGL library, any animation library beyond
 │   │   │   ├── SelectedWorkSection.vue
 │   │   │   ├── AiProcessSection.vue
 │   │   │   ├── ExperienceSection.vue
+│   │   │   ├── StackSection.vue
 │   │   │   └── ContactSection.vue
 │   │   ├── ui/
 │   │   │   ├── ButtonBase.vue
@@ -79,7 +80,8 @@ Do not add: Spline, Three.js, any 3D/WebGL library, any animation library beyond
 │   │   ├── experience.ts               # typed roles/education entries
 │   │   ├── process.ts                  # AI-assisted engineering process
 │   │   ├── projects.ts                 # typed project entries
-│   │   └── skills.ts                   # typed skill groups
+│   │   ├── skills.ts                   # typed skill groups
+│   │   └── stack.ts                    # typed stack capability categories + AI tools
 │   ├── layouts/
 │   │   └── default.vue
 │   ├── pages/
@@ -213,5 +215,6 @@ Implement the guard through `useReducedMotion` before initializing GSAP.
 - [x] Current role, internship, and education in `app/data/experience.ts`
 - [x] Five skill groups in `app/data/skills.ts`
 - [x] Contact email and footer metadata in `app/data/contact.ts`
+- [x] Stack capability categories and AI tools in `app/data/stack.ts`
 - [x] Hero, Lovary, and BlackBoxGym images in `public/images/`
 - [ ] Replace placeholder `#` project, GitHub, LinkedIn, and resume links with final URLs

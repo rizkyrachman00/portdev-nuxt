@@ -39,14 +39,12 @@ export interface ContactLink {
 export interface StackMark {
   name: string
   src: string
-  alt: string
 }
 
 export interface StackCategory {
   index: string
   label: string
   skills: string[]
-  ghostLabel: string
   marks: StackMark[]
 }
 
