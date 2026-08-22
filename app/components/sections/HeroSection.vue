@@ -1,11 +1,17 @@
 <template>
   <section
     ref="heroScope"
-    class="flex min-h-[520px] w-full flex-col items-center justify-center gap-5 px-5 py-[80px] md:min-h-[600px] md:gap-[30px] md:py-[100px] lg:min-h-[690px] lg:py-[120px]"
+    class="relative isolate flex min-h-[520px] w-full flex-col items-center justify-center gap-5 overflow-hidden px-5 py-[80px] md:min-h-[600px] md:gap-[30px] md:py-[100px] lg:min-h-[690px] lg:py-[120px]"
   >
+    <span
+      aria-hidden="true"
+      class="pointer-events-none absolute left-1/2 top-[48%] z-0 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-sans text-[clamp(96px,18vw,260px)] font-[650] leading-none tracking-[-0.07em] text-[#1515150A]"
+    >
+      INDONESIA
+    </span>
     <div
       ref="headingScope"
-      class="relative flex w-full max-w-[1040px] flex-col items-center gap-1 md:gap-2"
+      class="relative z-10 flex w-full max-w-[1040px] flex-col items-center gap-1 md:gap-2"
     >
       <div class="flex max-w-full items-center gap-3 md:gap-4">
         <span
@@ -96,7 +102,7 @@
     <p
       ref="description"
       data-hero-followup
-      class="max-w-[90%] text-center font-sans text-[15px] font-normal leading-[1.5] text-ink-700 md:max-w-[650px] md:text-[17px]"
+      class="relative z-10 max-w-[90%] text-center font-sans text-[15px] font-normal leading-[1.5] text-ink-700 md:max-w-[650px] md:text-[17px]"
     >
       I combine engineering judgment with AI-assisted workflows to build
       dependable web and mobile products faster.
@@ -105,7 +111,7 @@
     <div
       ref="actions"
       data-hero-followup
-      class="flex flex-col items-center gap-3 md:flex-row md:gap-[18px]"
+      class="relative z-10 flex flex-col items-center gap-3 md:flex-row md:gap-[18px]"
     >
       <ButtonBase
         variant="primary"

@@ -90,7 +90,12 @@ rather than separate gray hues.
 - **Max content width**: ~1100–1200px, centered, generous side margins.
 - **Vertical rhythm**: Very tall sections with large vertical whitespace
   between blocks (100–160px between major sections) — the design *breathes*.
-- **Hero**: Centered text alignment, single column.
+- **Hero**: Centered text alignment, single column. Oversized cropped ghost
+  word **INDONESIA** sits centered behind the headline block: Geist 650,
+  `clamp(96px,18vw,260px)`, tracking `-0.07em`, ink at `#1515150A`, cropped
+  at the viewport edges. Static — no entrance animation, no scroll motion.
+  Texture only; hero content always renders above it and it must never
+  compete with foreground legibility.
 - **Below hero**: Shifts to left-aligned, often two-column (headline left /
   supporting paragraph right, or content left / meta-label right).
 - **Case study cards**: Full-bleed-ish image/mockup on one side, text block
