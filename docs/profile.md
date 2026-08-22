@@ -7,8 +7,10 @@
 - **Professional title:** Software Engineer
 - **Location:** Yogyakarta, Indonesia
 - **Phone:** +62 858-6768-4504
-- **Email:** rachman.ti2012@gmail.com
+- **Email:** rachman.ti2025@gmail.com
 - **LinkedIn:** https://www.linkedin.com/in/rizkyrachman00
+- **GitHub:** https://github.com/rizkyrachman00
+- **Resume:** https://drive.google.com/file/d/19humpY9_83ot5FAAW-w1thHcEJ2Xc-7j/view?usp=sharing
 - **Personal link:** https://ungu.in/hi-rizky
 
 ## Professional Summary

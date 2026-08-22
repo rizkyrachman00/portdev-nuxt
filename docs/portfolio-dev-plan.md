@@ -217,4 +217,5 @@ Implement the guard through `useReducedMotion` before initializing GSAP.
 - [x] Contact email and footer metadata in `app/data/contact.ts`
 - [x] Stack capability categories and AI tools in `app/data/stack.ts`
 - [x] Hero, Lovary, and BlackBoxGym images in `public/images/`
-- [ ] Replace placeholder `#` project, GitHub, LinkedIn, and resume links with final URLs
+- [x] Email, social, and resume links wired in header, hero, and footer
+- [ ] Replace placeholder `#` project links with final URLs
