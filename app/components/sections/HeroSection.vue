@@ -107,16 +107,25 @@
       data-hero-followup
       class="flex flex-col items-center gap-3 md:flex-row md:gap-[18px]"
     >
-      <ButtonBase variant="primary" icon="ph:arrow-down" iconPosition="right" class="font-light">
+      <ButtonBase
+        variant="primary"
+        to="#selected-work"
+        icon="ph:arrow-down"
+        iconPosition="right"
+        class="font-light"
+      >
         View selected work
       </ButtonBase>
       <ButtonBase
         variant="secondary"
-        icon="ph:download-simple"
+        :to="resumeUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        icon="ph:arrow-up-right"
         iconPosition="left"
         class="font-light"
       >
-        Download resume
+        View resume
       </ButtonBase>
     </div>
   </section>
@@ -125,6 +134,7 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
+import { resumeUrl } from '~/data/contact'
 
 type UnderlineController = {
   play: () => void

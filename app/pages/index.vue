@@ -6,6 +6,7 @@
     <SelectedWorkSection />
     <AiProcessSection />
     <ExperienceSection />
+    <StackSection />
     <ContactSection />
   </main>
 </template>

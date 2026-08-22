@@ -262,9 +262,12 @@ useScrollReveal(experienceScope, () => {
 
   if (skillTargets.length !== skillGroups.length) return
 
+  const mutedColor = '#15151540'
+  const activeColor = '#151515'
+
   skillTargets.forEach(({ index, label }) => {
     gsap.set(index, { autoAlpha: 0.35, textContent: '00' })
-    gsap.set(label, { fontWeight: 400 })
+    gsap.set(label, { color: mutedColor, fontWeight: 400 })
   })
 
   const skillTimeline = gsap.timeline({
@@ -276,12 +279,8 @@ useScrollReveal(experienceScope, () => {
       invalidateOnRefresh: true,
     },
   })
-  const checksumOrder = [0, 1, 2, 3, 4]
 
-  checksumOrder.forEach((targetIndex, orderIndex) => {
-    const target = skillTargets[targetIndex]
-    if (!target) return
-
+  skillTargets.forEach((target, orderIndex) => {
     const activationPoint = orderIndex * 0.14
 
     skillTimeline
@@ -296,6 +295,7 @@ useScrollReveal(experienceScope, () => {
         },
       }, activationPoint)
       .to(target.label, {
+        color: activeColor,
         fontWeight: 600,
         duration: 0.08,
         ease: 'sine.out',

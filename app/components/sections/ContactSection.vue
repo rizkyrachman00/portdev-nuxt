@@ -52,6 +52,8 @@
               v-for="link in footerLinks"
               :key="link.label"
               :href="link.href"
+              target="_blank"
+              rel="noopener noreferrer"
               class="text-[13px] font-medium leading-[1.2] text-ink-900 transition-colors duration-200 hover:text-accent"
             >
               {{ link.label }}

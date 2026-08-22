@@ -1,5 +1,6 @@
 <template>
   <section
+    id="selected-work"
     ref="selectedWorkScope"
     class="flex w-full flex-col items-center gap-16 px-5 py-[100px] md:px-10 md:py-[120px] lg:gap-[120px] lg:px-20 lg:py-[160px]"
   >

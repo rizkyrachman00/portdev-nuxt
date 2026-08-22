@@ -115,6 +115,7 @@ body {
   }
 
   html.has-js [data-experience-skill-label] {
+    color: #15151540;
     font-weight: 400;
   }
 
