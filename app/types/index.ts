@@ -35,3 +35,24 @@ export interface ContactLink {
   label: string
   href: string
 }
+
+export interface StackMark {
+  name: string
+  src: string
+  alt: string
+}
+
+export interface StackCategory {
+  index: string
+  label: string
+  skills: string[]
+  ghostLabel: string
+  marks: StackMark[]
+}
+
+export interface AiTool {
+  name: string
+  description: string
+  href: string
+  icon: string
+}
