@@ -38,6 +38,12 @@ export default defineNuxtConfig({
     families: [
       { name: 'Geist', provider: 'google' },
       { name: 'Geist Mono', provider: 'google' },
+      {
+        name: 'Caveat',
+        provider: 'google',
+        weights: ['500'],
+        global: true,
+      },
     ],
   },
 

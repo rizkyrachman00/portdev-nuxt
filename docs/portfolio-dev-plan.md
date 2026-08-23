@@ -85,7 +85,8 @@ Do not add: Spline, Three.js, any 3D/WebGL library, any animation library beyond
 │   ├── layouts/
 │   │   └── default.vue
 │   ├── pages/
-│   │   └── index.vue                   # composes all sections, kept short
+│   │   ├── index.vue                   # composes all sections, kept short
+│   │   └── work.vue                    # curated work index placeholder (case studies pending)
 │   ├── plugins/
 │   │   └── gsap.client.ts              # client-only GSAP plugin registration
 │   ├── types/
@@ -219,4 +220,10 @@ Implement the guard through `useReducedMotion` before initializing GSAP.
 - [x] Stack capability categories and AI tools in `app/data/stack.ts`
 - [x] Hero, Lovary, and BlackBoxGym images in `public/images/`
 - [x] Email, social, and resume links wired in header, hero, and footer
-- [ ] Replace placeholder `#` project links with final URLs
+- [x] Curated `/work` placeholder page wired from the header work menu
+- [ ] Replace `#` project links and the `/work` placeholder with final content
+
+> **Approved deviation:** the `/work` placeholder display headings use
+> `font-medium` (`500`) instead of the `650` display target. This matches the
+> hero treatment the user approved for the placeholder; keep it until the
+> placeholder is replaced with final case-study content.

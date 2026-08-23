@@ -113,8 +113,19 @@ rather than separate gray hues.
 - Left: small square logo mark (dark rounded-square with initials/mono) +
   email address in small type.
 - Right: pill-shaped status badge with colored dot + text ("● Open to
-  opportunities"), plus a hamburger menu icon.
+  opportunities"), plus a circular list control that opens a work menu.
 - Transparent background, sits directly on page background, no border/shadow.
+- Work menu: a white `rounded-[20px]` panel (`border-ink-200`, no shadow)
+  anchored beneath the circular control, containing a single "WORK / INDEX →
+  Curated work" destination with a short project-index description. Opens
+  with a `300ms` cubic-bezier settle; closes on Escape, outside-click, or
+  navigation. Annotation fades out while the panel is open.
+- A handwritten annotation points at the work control: Caveat 500 in orange,
+  "another menu", rotated `-4deg`, with a hand-drawn curved arrow (inline
+  irregular SVG, rounded caps). Decorative only — `pointer-events-none`,
+  `aria-hidden`, never part of the control's accessible name. Sizes scale
+  down responsively (`28px` mobile / `31px` tablet / `46px` desktop text)
+  so it stays clear of hero content.
 
 ### Buttons
 - **Primary**: Solid black/ink pill or rounded-rect, white text, small arrow
