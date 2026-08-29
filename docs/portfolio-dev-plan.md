@@ -213,7 +213,7 @@ Implement the guard through `useReducedMotion` before initializing GSAP.
 
 ## 7. Content Status
 
-- [x] Seven project records in `app/data/projects.ts`
+- [x] Eight project records in `app/data/projects.ts`
 - [x] Current role, internship, and education in `app/data/experience.ts`
 - [x] Five skill groups in `app/data/skills.ts`
 - [x] Contact email and footer metadata in `app/data/contact.ts`
@@ -221,9 +221,35 @@ Implement the guard through `useReducedMotion` before initializing GSAP.
 - [x] Hero, Lovary, and BlackBoxGym images in `public/images/`
 - [x] Email, social, and resume links wired in header, hero, and footer
 - [x] Curated `/work` placeholder page wired from the header work menu
-- [ ] Replace `#` project links and the `/work` placeholder with final content
+- [x] `/work` archive page with eight projects, category filters, and five WebP assets
+- [ ] Replace `#` project links with final case-study destinations
 
 > **Approved deviation:** the `/work` placeholder display headings use
 > `font-medium` (`500`) instead of the `650` display target. This matches the
 > hero treatment the user approved for the placeholder; keep it until the
 > placeholder is replaced with final case-study content.
+
+### Archive implementation notes
+
+- `app/components/ui/WorkArchiveCard.vue` renders archive cards (featured /
+  compact variants) with typed `Project` props: editorial split frame with
+  an `8px` radius, year, and a footer row with a bare arrow that becomes a
+  real external link when `project.link` holds a live or GitHub URL.
+- `app/utils/workArchive.ts` holds `projectCategories`,
+  `filterProjectsByCategory`, and `archiveCardLayout` (fixed 12-column span
+  presets per filtered count, odd-count tablet full-span, `featured` variant
+  for spans of five columns or more, literal Tailwind span classes so
+  Tailwind's class scanner emits them).
+- `app/data/projects.ts` now holds eight records; archive metadata
+  (`archiveTitle`, `archiveSummary`, `archiveImage`, `archiveIndex`,
+  `categories`, `year`) is optional on `Project` so the homepage Selected
+  Work section is unaffected.
+- Archive motion uses the shared `useScrollReveal` lifecycle with the same
+  visible-but-untidy scrub language as the Stack section; there are no
+  hidden-first initial states in `app/assets/css/main.css` (removed so
+  remounted cards can never stay invisible). Filtering reorders the mosaic
+  with GSAP Flip (`gsap/Flip`, already bundled with the installed GSAP
+  package): cards carry stable `data-flip-id` attributes, the state is
+  captured from the current cards only, `targets` is passed to `Flip.from`
+  so remounted cards animate, the `onEnter` tween is returned to the Flip
+  timeline, and `ScrollTrigger.refresh()` runs after each reflow.

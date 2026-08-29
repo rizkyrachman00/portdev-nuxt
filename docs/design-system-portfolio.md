@@ -150,6 +150,58 @@ rather than separate gray hues.
   project links listed above/below the main card (e.g. "miniEcom API
   Prototype ↗").
 
+### Work archive (`/work`)
+- Archive heading follows the fade-heading hierarchy: bold/dark line plus
+  same-size lighter-gray lines beneath ("Projects built for / products,
+  systems, / and real workflows."). A large muted `WORK` wordmark sits
+  behind the heading's lower right, bottom-aligned with the headline field.
+  On desktop the supporting paragraph sits in the far-right columns
+  (10–12), left-aligned within its column; on mobile it stacks below the
+  heading.
+- Category filter rail: fully rounded pill buttons in mono caps, separated
+  from the intro by a thin rule. Active filter is solid ink with surface
+  text; inactive filters are thin-bordered with muted text. The rail
+  scrolls horizontally on mobile. A mono counter below reports the
+  filtered project count.
+- Archive mosaic on a 12-column grid with tight `8px` gutters: Lovary
+  spans 7, BlackBoxGym 5, Mobile Attendance 5, SECO 3, VPS Migration 4,
+  Inkindo 4, miniEcom 3, miniBookTicket 5. Tablet collapses to two columns;
+  mobile is a single column. The grid is `1280px` wide and every visible row
+  fills the full 12 columns edge-to-edge — filtered counts use fixed presets
+  (1: 12, 2: 6+6, 3: 4+4+4, 4: 6+6/6+6, 5: 7+5/4+4+4, 6: 4+4+4/4+4+4,
+  7: 7+5/7+5/4+4+4, 8: the mosaic above). On tablet an odd final card spans
+  both columns so no row is left half-empty.
+- Archive cards use an editorial split frame: `1px` ink outline, `8px`
+  radius, surface fill, no nested image card and no boxed footer. Featured
+  cards split into a text pane and an edge-to-edge image pane; compact
+  image cards stack text above an edge-to-edge image; text-only projects
+  stay dense typography-led frames. Each card shows a mono orange index,
+  type label, bold short title, factual summary, stack row, and the project
+  year. Hover darkens the border and scales the image slightly.
+- Card footer row: a thin rule, a mono label ("VIEW PROJECT" when a real
+  URL exists, "CASE STUDY" otherwise), and a bare `ph:arrow-up-right`
+  icon — no circle wrapper. Real URLs render as accessible external links
+  (`target="_blank"`, `rel="noopener noreferrer"`); on hover the arrow
+  turns accent orange, scales to `1.1`, and nudges up-right over `300ms`.
+  Missing or `#` links render the same arrow muted and inactive. Adding a
+  live or GitHub URL only requires setting `project.link`.
+- Closing band: one compact horizontal row under a thin rule — heading in
+  columns 1–3, supporting copy in 4–6, accent `LET'S TALK` pill in 7–8,
+  and an oversized muted `R/` mark cropped at the far-right edge. No
+  artificial minimum height; mobile stacks heading, copy, and CTA.
+- Archive motion follows the Stack section's visible-but-untidy language:
+  every element renders in its final position, slightly offset, rotated,
+  and softened, then scrubs into alignment on scroll. Cards start around
+  `0.82` opacity with small alternating offsets, rotation under `±2.5deg`,
+  and scale `0.96–0.98`; indexes decode from `00`; summaries resolve from
+  a reduced opacity; images stay visible and settle from a small offset;
+  arrows settle from a slight rotation. The heading splits into words that
+  settle from alternating offsets, and the `WORK` / `R/` ghosts drift on
+  slow parallax only. No blur is used in archive motion. The closing band
+  heading splits into words and the supporting copy into lines, both
+  settling per-unit like the archive heading, and the CTA settles in sync.
+  Reduced-motion users get the final tidy static layout.
+
 ### Process steps (numbered list)
 - Format: `01  Define` — muted orange numeral, bold title, gray description
   to the right, small connecting dot on a vertical line joining steps.
@@ -193,6 +245,20 @@ The required mockups for the selected-work section are present in
 
 Additional reference assets (`seco-web-app.png`, `vps-migrate-project.png`)
 can be used later for secondary project rows as the build expands.
+
+The `/work` archive uses five WebP assets converted from the composites in
+`temp/` (originals untouched):
+
+| Final path in `public/images/work/` | Source asset in `temp/` | Usage |
+|---|---|---|
+| `lovary-commerce.webp` | `lovary-web-commerce-app.png` | Lovary archive card |
+| `blackboxgym.webp` | `blackbox-gym-app.png` | BlackBoxGym archive card |
+| `mobile-attendance.webp` | `bukukar-mobile-app.png` | Mobile Attendance archive card |
+| `seco-commerce.webp` | `seco-web-app.png` | SECO archive card |
+| `vps-migration.webp` | `vps-migrate-project.png` | VPS Migration archive card |
+
+Inkindo Academy, miniEcom API, and miniBookTicket remain typography-led
+cards with no imagery.
 
 ---
 

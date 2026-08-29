@@ -1,3 +1,10 @@
+export type ProjectCategory =
+  | 'production'
+  | 'mobile'
+  | 'backend'
+  | 'personal'
+  | 'learning'
+
 export interface Project {
   id: string
   title: string
@@ -9,6 +16,12 @@ export interface Project {
   link?: string
   featured?: boolean
   index: string
+  archiveTitle?: string
+  archiveSummary?: string
+  archiveImage?: string
+  archiveImagePosition?: string
+  archiveIndex?: string
+  categories?: ProjectCategory[]
 }
 
 export interface ExperienceItem {
