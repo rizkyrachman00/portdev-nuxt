@@ -66,12 +66,12 @@ export const projects: Project[] = [
     type: 'FULL-STACK · 2025',
     year: '2025',
     summary:
-      'E-commerce and transaction features for a living-brand storefront, from store sessions to invoice delivery.',
+      'E-commerce and transaction features for a living-brand storefront, covering store sessions, sales-to-invoice workflows, and invoice delivery.',
     stack: 'LARAVEL 11 · AJAX · JQUERY · DOCKER',
     link: '#',
     archiveTitle: 'SECO Commerce',
     archiveSummary:
-      'Delivered 3+ e-commerce and transaction features: store-session management, sales-to-invoice workflows, and PDF and WhatsApp invoice delivery.',
+      'Delivered 3+ features across store-session management, sales-to-invoice workflows, and PDF and WhatsApp invoice delivery.',
     archiveImage: '/images/work/seco-commerce.webp',
     archiveImagePosition: 'center',
     archiveIndex: '04',
