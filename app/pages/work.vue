@@ -97,7 +97,10 @@
           :project="project"
           :archive-index="project.archiveIndex || project.index"
           :variant="archiveCardLayout(filteredProjects.length, index).variant"
-          :class="archiveCardLayout(filteredProjects.length, index).spanClass"
+          :class="[
+            archiveCardLayout(filteredProjects.length, index).spanClass,
+            archiveCardLayout(filteredProjects.length, index).tabletSpanClass,
+          ]"
         />
       </div>
     </section>

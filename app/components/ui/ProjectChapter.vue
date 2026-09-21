@@ -104,18 +104,26 @@ useScrollReveal(chapterScope, () => {
 
   if (!media || !image || !copy) return
 
+  gsap.from(media, {
+    autoAlpha: 0,
+    y: 24,
+    duration: 1.2,
+    ease: 'editorial',
+    scrollTrigger: {
+      trigger: media,
+      start: 'top 88%',
+      toggleActions: 'play none none reverse',
+    },
+  })
+
   const mediaQueries = gsap.matchMedia()
 
-  const createApertureTimeline = (
-    clipPath: string,
+  const createChapterTimeline = (
     start: string,
     end: string,
     scrub: number,
     triggerElement: HTMLElement = chapter,
   ) => {
-    gsap.set(media, { clipPath })
-    gsap.set(image, { scale: 1.035, transformOrigin: 'center' })
-
     asideLines.forEach((line, index) => {
       const drawsFromRight = index === 0
         ? props.imagePosition === 'right'
@@ -137,19 +145,6 @@ useScrollReveal(chapterScope, () => {
         invalidateOnRefresh: true,
       },
     })
-
-    timeline
-      .to(media, {
-        clipPath: 'inset(0% 0% 0% 0%)',
-        duration: 0.76,
-        ease: 'none',
-      }, 0)
-      .to(image, {
-        scale: 1,
-        duration: 0.76,
-        ease: 'none',
-        force3D: true,
-      }, 0)
 
     asideLines.forEach((line, index) => {
       timeline.to(line, {
@@ -181,12 +176,9 @@ useScrollReveal(chapterScope, () => {
   }
 
   mediaQueries.add('(min-width: 1024px)', () => {
-    const clipPath = props.imagePosition === 'right'
-      ? 'inset(0% 100% 0% 0%)'
-      : 'inset(0% 0% 0% 100%)'
     const ghostStart = props.imagePosition === 'right' ? 12 : -12
 
-    createApertureTimeline(clipPath, 'top 85%', 'top 28%', 1.05)
+    createChapterTimeline('top 85%', 'top 28%', 1.05)
 
     if (ghostTitle) {
       gsap.fromTo(ghostTitle, {
@@ -207,7 +199,7 @@ useScrollReveal(chapterScope, () => {
   })
 
   mediaQueries.add('(max-width: 1023.98px)', () => {
-    createApertureTimeline('inset(100% 0% 0% 0%)', 'top 88%', 'top 40%', 0.9, media)
+    createChapterTimeline('top 88%', 'top 40%', 0.9, media)
 
     if (ghostTitle) {
       gsap.fromTo(ghostTitle, {

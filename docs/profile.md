@@ -135,6 +135,20 @@ Developed and delivered a learning management system within four months.
 
 ## Projects
 
+### BukuERP — ERP & HRIS
+
+- **Year:** 2026
+- **Type:** Client ERP & HRIS project (PT. Jendela Digital Indonesia)
+- **Description:** Extended a Laravel ERP and HRIS covering accounting, inventory, sales, payroll, and cooperative workflows. Automated general-journal integration for sales, purchase, and stock events, built large Excel exports with RabbitMQ, and delivered payroll, shift management, employee lifecycle, and mobile attendance features.
+- **Technologies:** Laravel 11, PostgreSQL, RabbitMQ, Docker
+
+### Kiosk Commerce Backend
+
+- **Year:** 2026
+- **Type:** Client backend project (PT. Jendela Digital Indonesia)
+- **Description:** API-first Laravel backend for a kiosk commerce experience, built with thin controllers, use-case actions, and an isolated legacy integration boundary. Serves catalog and customization endpoints, issues kiosk API keys, and bridges a signed QR handoff into an existing CodeIgniter 3 cart flow.
+- **Technologies:** Laravel 13, PHP, MariaDB, CodeIgniter 3 integration
+
 ### miniEcom API Prototype
 
 - **Year:** 2026

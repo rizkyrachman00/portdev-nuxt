@@ -25,6 +25,8 @@ const desktopSpanPresets: Record<number, number[]> = {
   6: [4, 4, 4, 4, 4, 4],
   7: [7, 5, 7, 5, 4, 4, 4],
   8: [7, 5, 5, 3, 4, 4, 3, 5],
+  9: [7, 5, 4, 4, 4, 3, 3, 3, 3],
+  10: [7, 5, 7, 5, 4, 4, 4, 4, 4, 4],
 }
 
 const desktopSpanClasses: Record<number, string> = {
@@ -41,6 +43,7 @@ export interface ArchiveCardLayout {
   tabletSpan: number
   variant: 'featured' | 'compact'
   spanClass: string
+  tabletSpanClass: string
 }
 
 export function archiveCardLayout(count: number, index: number): ArchiveCardLayout {
@@ -51,5 +54,6 @@ export function archiveCardLayout(count: number, index: number): ArchiveCardLayo
     tabletSpan,
     variant: desktopSpan >= 5 ? 'featured' : 'compact',
     spanClass: desktopSpanClasses[desktopSpan] ?? 'lg:col-span-4',
+    tabletSpanClass: tabletSpan === 2 ? 'md:col-span-2' : '',
   }
 }

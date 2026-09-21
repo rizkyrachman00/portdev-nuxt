@@ -51,10 +51,6 @@ body {
     opacity: 0.25;
   }
 
-  html.has-js [data-project-media] {
-    clip-path: inset(100% 0% 0% 0%);
-  }
-
   html.has-js [data-project-ghost] {
     transform: translateY(6px);
   }
@@ -154,14 +150,6 @@ body {
   }
 
   @media (min-width: 1024px) {
-    html.has-js [data-project-image-position="right"] [data-project-media] {
-      clip-path: inset(0% 100% 0% 0%);
-    }
-
-    html.has-js [data-project-image-position="left"] [data-project-media] {
-      clip-path: inset(0% 0% 0% 100%);
-    }
-
     html.has-js [data-project-image-position="right"] [data-project-ghost] {
       transform: translateX(12px);
     }

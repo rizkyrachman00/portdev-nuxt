@@ -100,7 +100,10 @@ rather than separate gray hues.
   supporting paragraph right, or content left / meta-label right).
 - **Case study cards**: Full-bleed-ish image/mockup on one side, text block
   on the other, alternating or stacked depending on section. Numbered index
-  in the corner (e.g. "01 / FEATURED", "FULL-STACK", "2025").
+  in the corner (e.g. "01 / FEATURED", "FULL-STACK", "2025"). The image uses
+  a simple reversible fade and rise (`1.2s`, `editorial` ease): it reveals on
+  scroll down and hides again on scroll up. The aside index lines, the copy
+  pulse, and the ghost-title parallax are unchanged.
 - **Process/timeline lists**: Left column = numeral, middle = title +
   connecting vertical line/dot (like a timeline stem), right column =
   description. Small connecting dots along a vertical guide line.
@@ -163,14 +166,15 @@ rather than separate gray hues.
   text; inactive filters are thin-bordered with muted text. The rail
   scrolls horizontally on mobile. A mono counter below reports the
   filtered project count.
-- Archive mosaic on a 12-column grid with tight `8px` gutters: Lovary
-  spans 7, BlackBoxGym 5, Mobile Attendance 5, SECO 3, VPS Migration 4,
-  Inkindo 4, miniEcom 3, miniBookTicket 5. Tablet collapses to two columns;
-  mobile is a single column. The grid is `1280px` wide and every visible row
-  fills the full 12 columns edge-to-edge — filtered counts use fixed presets
-  (1: 12, 2: 6+6, 3: 4+4+4, 4: 6+6/6+6, 5: 7+5/4+4+4, 6: 4+4+4/4+4+4,
-  7: 7+5/7+5/4+4+4, 8: the mosaic above). On tablet an odd final card spans
-  both columns so no row is left half-empty.
+- Archive mosaic on a 12-column grid with tight `8px` gutters: BukuERP
+  spans 7, Lovary 5, BlackBoxGym 7, Mobile Attendance 5, SECO 4,
+  VPS Migration 4, Inkindo 4, miniEcom 4, miniBookTicket 4, Kiosk Backend 4.
+  Tablet collapses to two columns; mobile is a single column. The grid is
+  `1280px` wide and every visible row fills the full 12 columns edge-to-edge
+  — filtered counts use fixed presets (1: 12, 2: 6+6, 3: 4+4+4, 4: 6+6/6+6,
+  5: 7+5/4+4+4, 6: 4+4+4/4+4+4, 7: 7+5/7+5/4+4+4, 8: 7+5/5+3+4/4+3+5,
+  9: 7+5/4+4+4/3+3+3+3, 10: the mosaic above). On tablet an odd final card
+  spans both columns so no row is left half-empty.
 - Archive cards use an editorial split frame: `1px` ink outline, `8px`
   radius, surface fill, no nested image card and no boxed footer. Featured
   cards split into a text pane and an edge-to-edge image pane; compact
@@ -247,7 +251,10 @@ The required mockups for the selected-work section are present in
 Additional reference assets (`seco-web-app.png`, `vps-migrate-project.png`)
 can be used later for secondary project rows as the build expands.
 
-The `/work` archive uses five WebP assets converted from the composites in
+The BukuERP selected-work chapter reuses `public/images/work/bukuerp.webp`
+(1672×941, the same aspect as the two mockups above) as its homepage media.
+
+The `/work` archive uses seven WebP assets converted from the composites in
 `temp/` (originals untouched):
 
 | Final path in `public/images/work/` | Source asset in `temp/` | Usage |
@@ -257,9 +264,11 @@ The `/work` archive uses five WebP assets converted from the composites in
 | `mobile-attendance.webp` | `bukukar-mobile-app.png` | Mobile Attendance archive card |
 | `seco-commerce.webp` | `seco-web-app.png` | SECO archive card |
 | `vps-migration.webp` | `vps-migrate-project.png` | VPS Migration archive card |
+| `bukuerp.webp` | `bukuerp-image.png` | BukuERP archive card |
+| `inkindo-academy.webp` | `inkindo-academy-app.png` | Inkindo Academy archive card |
 
-Inkindo Academy, miniEcom API, and miniBookTicket remain typography-led
-cards with no imagery.
+miniEcom API, miniBookTicket, and Kiosk Commerce Backend remain
+typography-led cards with no imagery.
 
 ---
 

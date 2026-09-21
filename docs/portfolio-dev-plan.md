@@ -213,7 +213,7 @@ Implement the guard through `useReducedMotion` before initializing GSAP.
 
 ## 7. Content Status
 
-- [x] Eight project records in `app/data/projects.ts`
+- [x] Ten project records in `app/data/projects.ts`
 - [x] Current role, internship, and education in `app/data/experience.ts`
 - [x] Five skill groups in `app/data/skills.ts`
 - [x] Contact email and footer metadata in `app/data/contact.ts`
@@ -221,7 +221,7 @@ Implement the guard through `useReducedMotion` before initializing GSAP.
 - [x] Hero, Lovary, and BlackBoxGym images in `public/images/`
 - [x] Email, social, and resume links wired in header, hero, and footer
 - [x] Curated `/work` placeholder page wired from the header work menu
-- [x] `/work` archive page with eight projects, category filters, and five WebP assets
+- [x] `/work` archive page with ten projects, category filters, and seven WebP assets
 - [ ] Replace `#` project links with final case-study destinations
 
 > **Approved deviation:** the `/work` placeholder display headings use
@@ -240,7 +240,7 @@ Implement the guard through `useReducedMotion` before initializing GSAP.
   presets per filtered count, odd-count tablet full-span, `featured` variant
   for spans of five columns or more, literal Tailwind span classes so
   Tailwind's class scanner emits them).
-- `app/data/projects.ts` now holds eight records; archive metadata
+- `app/data/projects.ts` now holds ten records; archive metadata
   (`archiveTitle`, `archiveSummary`, `archiveImage`, `archiveIndex`,
   `categories`, `year`) is optional on `Project` so the homepage Selected
   Work section is unaffected.

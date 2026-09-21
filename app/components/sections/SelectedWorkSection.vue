@@ -47,9 +47,19 @@
         data-work-counter
         class="mt-4 block font-mono text-[10px] font-normal uppercase tracking-[0.8px] text-[#15151566] lg:absolute lg:right-0 lg:top-5 lg:mt-0 lg:text-[11px]"
       >
-        01—06
+        01—09
       </span>
     </div>
+
+    <ProjectChapter
+      v-if="bukerpProject"
+      :project="bukerpProject"
+      image-position="left"
+      ghost-title="ERP + HRIS"
+      :top-aside-project="secoProject"
+      :bottom-aside-project="kioskProject"
+      class="w-full max-w-[1120px]"
+    />
 
     <ProjectChapter
       v-if="lovaryProject"
@@ -158,6 +168,9 @@ useScrollReveal(selectedWorkScope, () => {
     .to([focusRail, focusNode], { autoAlpha: 0, duration: 0.1, ease: 'none' }, 0.9)
 })
 
+const bukerpProject = projects.find((project) => project.id === 'bukuerp')
+const secoProject = projects.find((project) => project.id === 'seco-commerce')
+const kioskProject = projects.find((project) => project.id === 'kiosk-backend')
 const lovaryProject = projects.find((project) => project.id === 'lovary-commerce')
 const blackboxProject = projects.find((project) => project.id === 'blackboxgym')
 const miniecomProject = projects.find((project) => project.id === 'miniecom-api')
