@@ -1,7 +1,6 @@
 <template>
   <article
     data-archive-card
-    :data-flip-id="project.id"
     class="group relative flex w-full flex-col overflow-hidden rounded-[8px] border border-ink-200 bg-surface transition-colors duration-300 hover:border-ink-400"
   >
     <div
@@ -10,7 +9,7 @@
     >
       <div class="w-full p-5 md:p-6 lg:w-[46%]">
         <div class="flex w-full items-baseline justify-between gap-4">
-          <span data-archive-card-index class="font-mono text-[10px] font-normal tracking-[0.8px] text-accent md:text-[11px]">
+          <span class="font-mono text-[10px] font-normal tracking-[0.8px] text-accent md:text-[11px]">
             {{ archiveIndex }}
           </span>
           <span class="font-mono text-[10px] font-normal tracking-[0.8px] text-ink-400 md:text-[11px]">
@@ -22,7 +21,7 @@
           {{ project.archiveTitle || project.title }}
         </h2>
 
-        <p data-archive-card-summary class="mt-3 font-sans text-[13px] font-normal leading-[1.5] text-ink-700 md:text-[14px] [text-align:justify]">
+        <p class="mt-3 font-sans text-[13px] font-normal leading-[1.5] text-ink-700 md:text-[14px] [text-align:justify]">
           {{ project.archiveSummary || project.summary }}
         </p>
 
@@ -38,7 +37,6 @@
 
       <div
         v-if="project.archiveImage"
-        data-archive-card-image
         class="w-full overflow-hidden lg:flex lg:w-[54%]"
       >
         <NuxtImg
@@ -54,7 +52,7 @@
     <div v-else class="flex w-full flex-col">
       <div class="w-full p-5 md:p-6">
         <div class="flex w-full items-baseline justify-between gap-4">
-          <span data-archive-card-index class="font-mono text-[10px] font-normal tracking-[0.8px] text-accent md:text-[11px]">
+          <span class="font-mono text-[10px] font-normal tracking-[0.8px] text-accent md:text-[11px]">
             {{ archiveIndex }}
           </span>
           <span class="font-mono text-[10px] font-normal tracking-[0.8px] text-ink-400 md:text-[11px]">
@@ -66,7 +64,7 @@
           {{ project.archiveTitle || project.title }}
         </h2>
 
-        <p data-archive-card-summary class="mt-3 font-sans text-[13px] font-normal leading-[1.5] text-ink-700 md:text-[14px] [text-align:justify]">
+        <p class="mt-3 font-sans text-[13px] font-normal leading-[1.5] text-ink-700 md:text-[14px] [text-align:justify]">
           {{ project.archiveSummary || project.summary }}
         </p>
 
@@ -82,7 +80,6 @@
 
       <div
         v-if="project.archiveImage"
-        data-archive-card-image
         class="w-full overflow-hidden"
       >
         <NuxtImg
@@ -105,7 +102,6 @@
         :aria-label="`Open ${project.archiveTitle || project.title}`"
         target="_blank"
         rel="noopener noreferrer"
-        data-archive-card-arrow
         class="text-ink-900 transition-[color,transform] duration-300 ease-out hover:translate-x-0.5 hover:-translate-y-0.5 hover:scale-110 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         <Icon name="ph:arrow-up-right" class="h-[18px] w-[18px] md:h-5 md:w-5" />

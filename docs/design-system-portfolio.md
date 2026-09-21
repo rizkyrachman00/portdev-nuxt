@@ -189,18 +189,19 @@ rather than separate gray hues.
   columns 1–3, supporting copy in 4–6, accent `LET'S TALK` pill in 7–8,
   and an oversized muted `R/` mark cropped at the far-right edge. No
   artificial minimum height; mobile stacks heading, copy, and CTA.
-- Archive motion follows the Stack section's visible-but-untidy language:
-  every element renders in its final position, slightly offset, rotated,
-  and softened, then scrubs into alignment on scroll. Cards start around
-  `0.82` opacity with small alternating offsets, rotation under `±2.5deg`,
-  and scale `0.96–0.98`; indexes decode from `00`; summaries resolve from
-  a reduced opacity; images stay visible and settle from a small offset;
-  arrows settle from a slight rotation. The heading splits into words that
-  settle from alternating offsets, and the `WORK` / `R/` ghosts drift on
-  slow parallax only. No blur is used in archive motion. The closing band
-  heading splits into words and the supporting copy into lines, both
-  settling per-unit like the archive heading, and the CTA settles in sync.
-  Reduced-motion users get the final tidy static layout.
+- Archive motion is deliberately minimal so the work reads immediately: on
+  load the eyebrow, the three heading lines, the supporting copy, and the
+  count fade and rise in that order (the heading lines stagger one after
+  another) on the `editorial` ease — a cascade of roughly three and a half
+  seconds. The filter buttons, the cards, and the closing band share one
+  direction-aware reveal: a `1.2s` opacity and 20px rise, the buttons
+  staggered left to right and every card in a row appearing at the same time.
+  Scrolling down brings an element in, scrolling back up hides it again at
+  the same speed, and it returns on the next downward scroll. There is no
+  scroll scrub, rotation, scale, scramble, or parallax in the archive; the
+  `WORK` and `R/` ghosts are static. Switching a category animates only the
+  newly added cards; cards already on screen stay in place. Reduced-motion
+  users get the identical final static layout with no motion at all.
 
 ### Process steps (numbered list)
 - Format: `01  Define` — muted orange numeral, bold title, gray description
@@ -291,7 +292,9 @@ The typewriter treatment is a hero-only exception. Do not reuse it elsewhere.
 
 ### Shared motion rules
 
-- Use clip-path line reveals as the quiet default for non-hero text.
+- Use clip-path line reveals as the quiet default for non-hero text. The
+  `/work` archive intro is an approved exception: it uses a staggered fade and
+  rise instead (see the Work archive section).
 - Use scroll-scrubbed variable font weight only for selected display headings.
 - Use scramble/decode effects sparingly on numerals and short labels.
 - Keep ghost typography to slow parallax only.

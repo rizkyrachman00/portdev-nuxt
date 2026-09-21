@@ -4,10 +4,8 @@
 
     <section class="relative overflow-hidden px-5 pt-20 md:px-10 md:pt-24 lg:px-20">
       <div class="relative mx-auto w-full max-w-[1120px]">
-        <div data-archive-header class="relative">
-          <div data-archive-intro class="relative">
+        <div class="relative">
           <span
-            data-archive-work
             aria-hidden="true"
             class="pointer-events-none absolute bottom-0 right-0 z-0 select-none font-sans text-[120px] font-medium leading-[0.8] tracking-[-0.04em] text-[#15151508] md:text-[180px] lg:text-[240px]"
           >
@@ -23,18 +21,21 @@
                 WORK / ARCHIVE
               </span>
 
-              <h1 data-archive-heading class="mt-6 flex flex-col gap-0 lg:mt-8">
+              <h1 class="mt-6 flex flex-col gap-0 lg:mt-8">
                 <span
+                  data-archive-heading-line
                   class="text-[44px] font-medium leading-[1] tracking-[-2px] text-ink-900 md:text-[64px] md:tracking-[-3px] lg:text-[80px] lg:tracking-[-3.6px]"
                 >
                   Projects built for
                 </span>
                 <span
+                  data-archive-heading-line
                   class="text-[44px] font-medium leading-[1] tracking-[-2px] text-[#15151566] md:text-[64px] md:tracking-[-3px] lg:text-[80px] lg:tracking-[-3.6px]"
                 >
                   products, systems,
                 </span>
                 <span
+                  data-archive-heading-line
                   class="text-[44px] font-medium leading-[1] tracking-[-2px] text-[#1515152E] md:text-[64px] md:tracking-[-3px] lg:text-[80px] lg:tracking-[-3.6px]"
                 >
                   and real workflows.
@@ -82,7 +83,6 @@
         >
           {{ filteredProjects.length }} {{ filteredProjects.length === 1 ? 'PROJECT' : 'PROJECTS' }}
         </p>
-        </div>
       </div>
     </section>
 
@@ -108,7 +108,6 @@
         class="relative mx-auto w-full max-w-[1120px] overflow-hidden border-t border-ink-200"
       >
         <span
-          data-archive-mark
           aria-hidden="true"
           class="pointer-events-none absolute bottom-0 right-2 z-0 select-none font-sans text-[120px] font-medium leading-[0.8] tracking-[-0.04em] text-[#15151508] md:right-4 md:text-[160px] lg:text-[200px]"
         >
@@ -116,7 +115,7 @@
         </span>
 
         <div class="relative z-10 flex flex-col gap-6 py-8 md:py-10 lg:grid lg:grid-cols-12 lg:items-center lg:gap-0">
-          <h2 data-archive-contact-heading class="flex flex-col gap-0 lg:col-span-4">
+          <h2 class="flex flex-col gap-0 lg:col-span-4">
             <span class="text-[36px] font-medium leading-[1] tracking-[-1.4px] text-ink-900 md:text-[48px] md:tracking-[-2px] lg:whitespace-nowrap">
               Have a project
             </span>
@@ -126,7 +125,6 @@
           </h2>
 
           <p
-            data-archive-contact-copy
             class="max-w-[380px] font-sans text-[14px] font-normal leading-[1.5] text-ink-700 md:text-[15px] lg:col-span-3 lg:col-start-5"
           >
             I'm open to building reliable systems, clean codebases, and
@@ -134,7 +132,6 @@
           </p>
 
           <ButtonBase
-            data-archive-contact-cta
             :to="contactEmail"
             variant="accent"
             icon="ph:arrow-up-right"
@@ -151,14 +148,11 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
 import { gsap } from 'gsap'
-import { Flip } from 'gsap/Flip'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { SplitText } from 'gsap/SplitText'
+import type { ProjectCategory } from '~/types'
 import { projects } from '~/data/projects'
 import { contactEmail } from '~/data/contact'
 import { filterProjectsByCategory, projectCategories, archiveCardLayout } from '~/utils/workArchive'
-
-gsap.registerPlugin(Flip, ScrollTrigger, SplitText)
 
 useSeoMeta({
   title: 'Work Archive — Rizky Rachman',
@@ -184,297 +178,148 @@ const archiveScope = useTemplateRef<HTMLElement>('archiveScope')
 const archiveGrid = useTemplateRef<HTMLElement>('archiveGrid')
 const reducedMotion = useReducedMotion()
 
-watch(
-  filteredProjects,
-  async () => {
-    if (!archiveGrid.value) return
-    if (reducedMotion.value) return
+let gridContext: gsap.Context | undefined
+let revealedCards = new WeakSet<HTMLElement>()
+const cardTriggers = new Map<HTMLElement, ScrollTrigger>()
 
-    const currentCards = archiveGrid.value.querySelectorAll<HTMLElement>('[data-archive-card]')
-    const state = Flip.getState(currentCards)
-    await nextTick()
+function syncGridReveal() {
+  if (!archiveGrid.value || reducedMotion.value) return
 
-    const nextCards = archiveGrid.value.querySelectorAll<HTMLElement>('[data-archive-card]')
+  for (const [card, trigger] of cardTriggers) {
+    if (!card.isConnected) {
+      trigger.kill()
+      cardTriggers.delete(card)
+    }
+  }
 
-    Flip.from(state, {
-      targets: nextCards,
-      duration: 0.55,
-      ease: 'power3.inOut',
-      stagger: 0.02,
-      onEnter: (elements) =>
-        gsap.fromTo(
-          elements,
-          { autoAlpha: 0, y: 14 },
-          { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power3.out' },
-        ),
-      onComplete: () => ScrollTrigger.refresh(),
+  const pendingCards = Array.from(
+    archiveGrid.value.querySelectorAll<HTMLElement>('[data-archive-card]'),
+  ).filter((card) => !revealedCards.has(card))
+
+  if (!pendingCards.length) return
+
+  const revealPendingCards = () => {
+    pendingCards.forEach((card) => {
+      revealedCards.add(card)
+
+      const tween = gsap.from(card, {
+        autoAlpha: 0,
+        y: 20,
+        duration: 1.2,
+        ease: 'editorial',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 88%',
+          toggleActions: 'play none none reverse',
+        },
+      })
+
+      if (tween.scrollTrigger) cardTriggers.set(card, tween.scrollTrigger)
     })
-  },
-)
+  }
+
+  if (gridContext) {
+    gridContext.add(revealPendingCards)
+  } else {
+    gridContext = gsap.context(revealPendingCards, archiveGrid.value)
+  }
+}
+
+watch(filteredProjects, async () => {
+  if (!archiveGrid.value || reducedMotion.value) return
+
+  await nextTick()
+
+  ScrollTrigger.refresh()
+  syncGridReveal()
+})
 
 useScrollReveal(archiveScope, () => {
   if (!archiveScope.value) return
 
   const scope = archiveScope.value
-  const header = scope.querySelector<HTMLElement>('[data-archive-header]')
-  const intro = scope.querySelector<HTMLElement>('[data-archive-intro]')
   const eyebrow = scope.querySelector<HTMLElement>('[data-archive-eyebrow]')
-  const heading = scope.querySelector<HTMLElement>('[data-archive-heading]')
-  const copy = scope.querySelector<HTMLElement>('[data-archive-copy]')
-  const filters = scope.querySelector<HTMLElement>('[data-archive-filters]')
+  const headingLines = Array.from(
+    scope.querySelectorAll<HTMLElement>('[data-archive-heading-line]'),
+  )
+  const supportingCopy = scope.querySelector<HTMLElement>('[data-archive-copy]')
+  const filterRail = scope.querySelector<HTMLElement>('[data-archive-filters]')
   const filterButtons = Array.from(
     scope.querySelectorAll<HTMLElement>('[data-archive-filter]'),
   )
-  const count = scope.querySelector<HTMLElement>('[data-archive-count]')
-  const work = scope.querySelector<HTMLElement>('[data-archive-work]')
-  const contact = scope.querySelector<HTMLElement>('[data-archive-contact]')
-  const contactHeading = scope.querySelector<HTMLElement>('[data-archive-contact-heading]')
-  const contactCopy = scope.querySelector<HTMLElement>('[data-archive-contact-copy]')
-  const contactCta = scope.querySelector<HTMLElement>('[data-archive-contact-cta]')
-  const mark = scope.querySelector<HTMLElement>('[data-archive-mark]')
-  const cards = Array.from(scope.querySelectorAll<HTMLElement>('[data-archive-card]'))
+  const countLabel = scope.querySelector<HTMLElement>('[data-archive-count]')
+  const closingBand = scope.querySelector<HTMLElement>('[data-archive-contact]')
 
   if (
-    !header || !intro || !eyebrow || !heading || !copy || !filters ||
-    !count || !work || !contact || !contactHeading || !contactCopy || !contactCta || !mark
+    !eyebrow
+    || !headingLines.length
+    || !supportingCopy
+    || !filterRail
+    || !filterButtons.length
+    || !countLabel
+    || !closingBand
   ) return
 
-  let split: SplitText | undefined
-
-  split = SplitText.create(heading, { type: 'words' })
-  const words = split.words as HTMLElement[]
-  const wordFrom = [
-    { x: -3, y: -9, rotation: -0.5 },
-    { x: 2, y: -8, rotation: 0.4 },
-    { x: -2, y: -10, rotation: -0.35 },
-    { x: 3, y: 1, rotation: 0.5 },
-    { x: -3, y: -1, rotation: -0.4 },
-    { x: 2, y: 1, rotation: 0.35 },
-    { x: -2, y: 9, rotation: -0.45 },
-    { x: 3, y: 10, rotation: 0.4 },
-    { x: -3, y: 8, rotation: -0.5 },
-    { x: 2, y: 9, rotation: 0.35 },
-  ]
-  const pillFrom = [
-    { y: 2, rotation: -0.15 },
-    { y: -2, rotation: 0.15 },
-    { y: 2, rotation: -0.1 },
-    { y: -2, rotation: 0.1 },
-    { y: 2, rotation: -0.15 },
-    { y: -2, rotation: 0.15 },
-  ]
-
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: header,
-      start: 0,
-      end: () => window.innerHeight * 0.45,
-      scrub: true,
-      invalidateOnRefresh: true,
-    },
-  })
-    .fromTo(
-      eyebrow,
-      { x: -8, autoAlpha: 0.7 },
-      { x: 0, autoAlpha: 1, duration: 1, ease: 'none' },
-      0,
-    )
-    .fromTo(
-      words,
-      {
-        x: (index: number) => wordFrom[index % wordFrom.length]?.x ?? 0,
-        y: (index: number) => wordFrom[index % wordFrom.length]?.y ?? 0,
-        rotation: (index: number) => wordFrom[index % wordFrom.length]?.rotation ?? 0,
-      },
-      { x: 0, y: 0, rotation: 0, duration: 1, ease: 'none' },
-      0,
-    )
-    .fromTo(
-      copy,
-      { x: 10, y: 6, rotation: 0.25, autoAlpha: 0.82 },
-      { x: 0, y: 0, rotation: 0, autoAlpha: 1, duration: 1, ease: 'none' },
-      0,
-    )
-    .fromTo(
-      filterButtons,
-      {
-        y: (index: number) => pillFrom[index % pillFrom.length]?.y ?? 0,
-        rotation: (index: number) => pillFrom[index % pillFrom.length]?.rotation ?? 0,
-      },
-      { y: 0, rotation: 0, duration: 1, ease: 'none' },
-      0,
-    )
-    .fromTo(
-      count,
-      { y: 4, autoAlpha: 0.85 },
-      { y: 0, autoAlpha: 1, duration: 1, ease: 'none' },
-      0,
-    )
-
-  const cardFrom = [
-    { x: -7, y: 4, rotation: -1.2, scale: 0.985 },
-    { x: 6, y: -5, rotation: 1, scale: 0.98 },
-    { x: -5, y: 6, rotation: -0.8, scale: 0.99 },
-    { x: 8, y: -3, rotation: 1.2, scale: 0.985 },
-  ]
-
-  cards.forEach((card, index) => {
-    const preset = cardFrom[index % cardFrom.length] ?? { x: 0, y: 0, rotation: 0, scale: 0.985 }
-    const number = card.querySelector<HTMLElement>('[data-archive-card-index]')
-    const summary = card.querySelector<HTMLElement>('[data-archive-card-summary]')
-    const image = card.querySelector<HTMLElement>('[data-archive-card-image]')
-    const arrow = card.querySelector<HTMLElement>('[data-archive-card-arrow]')
-    const numberText = number?.textContent?.trim() ?? ''
-    const fromLeft = index % 2 === 0
-
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 92%',
-        end: 'clamp(bottom 52%)',
-        scrub: 0.7,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          if (self.progress === 1) timeline.progress(1)
-        },
-      },
+  gsap.timeline()
+    .from(eyebrow, {
+      autoAlpha: 0,
+      y: 10,
+      duration: 1,
+      ease: 'editorial',
     })
+    .from(headingLines, {
+      autoAlpha: 0,
+      y: 20,
+      duration: 1.2,
+      ease: 'editorial',
+      stagger: 0.16,
+    }, '>-0.3')
+    .from(supportingCopy, {
+      autoAlpha: 0,
+      y: 16,
+      duration: 1.1,
+      ease: 'editorial',
+    }, '>-0.4')
+    .from(countLabel, {
+      autoAlpha: 0,
+      y: 10,
+      duration: 0.9,
+      ease: 'editorial',
+    }, '>-0.3')
 
-    timeline.fromTo(
-      card,
-      { autoAlpha: 0.95, x: preset.x, y: preset.y, rotation: preset.rotation, scale: preset.scale },
-      { autoAlpha: 1, x: 0, y: 0, rotation: 0, scale: 1, duration: 0.55, ease: 'none' },
-      0.02,
-    )
-
-    if (number) {
-      timeline.fromTo(
-        number,
-        { autoAlpha: 0.45, textContent: '00' },
-        {
-          autoAlpha: 1,
-          duration: 0.3,
-          ease: 'none',
-          scrambleText: {
-            text: numberText,
-            chars: '0123456789',
-            speed: 0.8,
-          },
-        },
-        0.06,
-      )
-    }
-
-    if (summary) {
-      timeline.fromTo(
-        summary,
-        { autoAlpha: 0.92 },
-        { autoAlpha: 1, duration: 0.3, ease: 'none' },
-        0.08,
-      )
-    }
-
-    if (image) {
-      timeline.fromTo(
-        image,
-        { x: fromLeft ? -6 : 6, scale: 1.015 },
-        { x: 0, scale: 1, duration: 0.5, ease: 'none' },
-        0.1,
-      )
-    }
-
-    if (arrow) {
-      timeline.fromTo(
-        arrow,
-        { rotation: fromLeft ? -5 : 5 },
-        { rotation: 0, duration: 0.4, ease: 'none' },
-        0.12,
-      )
-    }
-  })
-
-  const contactSplit = SplitText.create(contactHeading, { type: 'words' })
-  const contactWords = contactSplit.words as HTMLElement[]
-  const contactWordFrom = [
-    { x: -3, y: -9, rotation: -0.5 },
-    { x: 2, y: -8, rotation: 0.4 },
-    { x: -2, y: -10, rotation: -0.35 },
-    { x: 3, y: 9, rotation: 0.45 },
-    { x: -3, y: 10, rotation: -0.4 },
-  ]
-  const contactCopySplit = SplitText.create(contactCopy, { type: 'lines' })
-  const contactCopyLines = contactCopySplit.lines as HTMLElement[]
-  const contactCopyLineFrom = [
-    { x: -4, y: 3, rotation: -0.3 },
-    { x: 3, y: -2, rotation: 0.25 },
-    { x: -3, y: 2, rotation: -0.2 },
-  ]
-  const contactTimeline = gsap.timeline({
+  gsap.from(filterButtons, {
+    autoAlpha: 0,
+    y: 20,
+    duration: 1.2,
+    ease: 'editorial',
+    stagger: 0.06,
     scrollTrigger: {
-      trigger: contact,
-      start: 'top bottom',
-      end: 'clamp(bottom 52%)',
-      scrub: 0.9,
-      invalidateOnRefresh: true,
+      trigger: filterRail,
+      start: 'top 88%',
+      toggleActions: 'play none none reverse',
     },
   })
 
-  contactTimeline
-    .fromTo(
-      contactWords,
-      {
-        x: (index: number) => contactWordFrom[index % contactWordFrom.length]?.x ?? 0,
-        y: (index: number) => contactWordFrom[index % contactWordFrom.length]?.y ?? 0,
-        rotation: (index: number) => contactWordFrom[index % contactWordFrom.length]?.rotation ?? 0,
-      },
-      { x: 0, y: 0, rotation: 0, duration: 1, ease: 'none' },
-      0,
-    )
-    .fromTo(
-      contactCopyLines,
-      {
-        x: (index: number) => contactCopyLineFrom[index % contactCopyLineFrom.length]?.x ?? 0,
-        y: (index: number) => contactCopyLineFrom[index % contactCopyLineFrom.length]?.y ?? 0,
-        rotation: (index: number) => contactCopyLineFrom[index % contactCopyLineFrom.length]?.rotation ?? 0,
-      },
-      { x: 0, y: 0, rotation: 0, duration: 1, ease: 'none' },
-      0,
-    )
-    .fromTo(
-      contactCta,
-      { x: 6, y: 4, rotation: 0.5, scale: 0.99 },
-      { x: 0, y: 0, rotation: 0, scale: 1, duration: 1, ease: 'none' },
-      0,
-    )
-
-  gsap.fromTo(work, { x: -6 }, {
-    x: 6,
-    ease: 'none',
+  gsap.from(closingBand, {
+    autoAlpha: 0,
+    y: 20,
+    duration: 1.2,
+    ease: 'editorial',
     scrollTrigger: {
-      trigger: scope,
-      start: 'top bottom',
-      end: 'clamp(bottom top)',
-      scrub: 0.8,
-      invalidateOnRefresh: true,
+      trigger: closingBand,
+      start: 'top 88%',
+      toggleActions: 'play none none reverse',
     },
   })
 
-  gsap.fromTo(mark, { x: 6 }, {
-    x: -6,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: scope,
-      start: 'top bottom',
-      end: 'clamp(bottom top)',
-      scrub: 0.8,
-      invalidateOnRefresh: true,
-    },
-  })
+  syncGridReveal()
 
   return () => {
-    split?.revert()
-    contactSplit.revert()
-    contactCopySplit.revert()
+    revealedCards = new WeakSet<HTMLElement>()
+    cardTriggers.forEach((trigger) => trigger.kill())
+    cardTriggers.clear()
+    gridContext?.revert()
+    gridContext = undefined
   }
 })
 </script>

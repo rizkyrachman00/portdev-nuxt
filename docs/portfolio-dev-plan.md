@@ -146,7 +146,7 @@ must not be reused for other sections without user approval.
 | Hero headline, portrait, copy, and CTAs | **Sequenced hero entrance** — width-preserving character typing, solid-to-blinking cursor, underline draw, blur-resolved copy, then overlapping CTA reveals | Hero-only exception. The portrait breathes independently throughout. |
 | Completed hero headline | **Random isolated word pulses** — one shuffled word scales to `1.01` and returns fully to rest before the next | Start only after the entrance. Pause between words and cycles; pulse the cursor with `AI.` and keep the underline static. |
 | 2–3 main section headlines (e.g. "Selected work.", "AI moves fast.") | **Scroll-scrubbed variable font weight** — `font-variation-settings` driven directly by scroll position, not time | Signature move. Directly extends the design's own bold→gray fade pattern into motion — this is why it reads intentional rather than templated. Requires a variable font. |
-| Non-hero headings and body paragraphs | **Clip-path line reveal** — masked lines translate into view | Quiet default reveal used outside the hero. Hard-edged reveal, not soft. |
+| Non-hero headings and body paragraphs | **Clip-path line reveal** — masked lines translate into view | Quiet default reveal used outside the hero. Hard-edged reveal, not soft. The `/work` archive intro is an approved exception: a staggered fade and rise instead. |
 | "with AI" accent phrase | **Self-drawing underline** — SVG stroke with `stroke-dashoffset` animated on scroll-into-view | Small, cheap, distinctive detail |
 | Numbers (≈2, 01–04, date ranges) | **Scramble/decode-in** — random characters settle into the real value | Use sparingly, only on numerals/short labels — ties into "AI-assisted" narrative without being a template cliché |
 | Ghost background typography | **Slow parallax only**, no reveal animation | It's texture, not content — should feel passively present |
@@ -244,12 +244,18 @@ Implement the guard through `useReducedMotion` before initializing GSAP.
   (`archiveTitle`, `archiveSummary`, `archiveImage`, `archiveIndex`,
   `categories`, `year`) is optional on `Project` so the homepage Selected
   Work section is unaffected.
-- Archive motion uses the shared `useScrollReveal` lifecycle with the same
-  visible-but-untidy scrub language as the Stack section; there are no
-  hidden-first initial states in `app/assets/css/main.css` (removed so
-  remounted cards can never stay invisible). Filtering reorders the mosaic
-  with GSAP Flip (`gsap/Flip`, already bundled with the installed GSAP
-  package): cards carry stable `data-flip-id` attributes, the state is
-  captured from the current cards only, `targets` is passed to `Flip.from`
-  so remounted cards animate, the `onEnter` tween is returned to the Flip
-  timeline, and `ScrollTrigger.refresh()` runs after each reflow.
+- Archive motion is intentionally minimal so the work is scannable: through
+  the shared `useScrollReveal` lifecycle, the eyebrow, three heading lines,
+  supporting copy, and count fade and rise in that order on load (heading
+  lines staggered), using the `editorial` ease. The filter buttons, the cards,
+  and the closing band share one reversible reveal — a `1.2s` opacity and 20px
+  rise, buttons staggered left to right and every card in a row entering at
+  the same time — via ScrollTriggers configured with
+  `toggleActions: 'play none none reverse'`, so the reveal is direction-aware:
+  an element hides again when scrolled back up (same `1.2s` speed) and returns
+  on the next downward scroll. There is no scroll scrub, rotation, scale,
+  scramble, or parallax, and no hidden-first initial states in
+  `app/assets/css/main.css` (removed so remounted cards can never stay
+  invisible). Filtering animates only the newly added cards after Vue
+  re-renders the mosaic, killing the triggers of cards it removed; cards
+  already on screen stay in place. GSAP Flip is no longer used on this page.
