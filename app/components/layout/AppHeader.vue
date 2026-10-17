@@ -21,7 +21,30 @@
       <div class="relative flex items-center gap-3 md:gap-3.5">
         <StatusBadge />
 
-        <div ref="workMenuScope" class="relative">
+        <nav aria-label="Social links" class="flex items-center gap-4 md:gap-5">
+          <a
+            v-for="link in socialLinks"
+            :key="link.label"
+            :href="link.href"
+            :aria-label="link.label"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center justify-center gap-1.5 text-ink-900 transition-[color,transform] duration-300 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.96] lg:gap-2"
+          >
+            <Icon
+              :name="link.icon"
+              class="h-5 w-5 transition-transform duration-300 motion-reduce:transform-none group-hover:scale-110 md:h-[22px] md:w-[22px]"
+            />
+            <span class="hidden font-sans text-sm font-medium lg:inline">{{ link.label }}</span>
+          </a>
+        </nav>
+
+        <div
+          ref="workMenuScope"
+          class="relative"
+          @pointerenter="onScopePointerEnter"
+          @pointerleave="onScopePointerLeave"
+        >
           <button
             ref="workMenuTrigger"
             type="button"
@@ -122,7 +145,7 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { contactEmail, contactEmailAddress } from '~/data/contact'
+import { contactEmail, contactEmailAddress, socialLinks } from '~/data/contact'
 
 const route = useRoute()
 const isWorkMenuOpen = ref(false)
@@ -136,6 +159,20 @@ function toggleWorkMenu() {
 
 function closeWorkMenu() {
   isWorkMenuOpen.value = false
+}
+
+let hoverCloseTimer: ReturnType<typeof setTimeout> | undefined
+
+function onScopePointerEnter(event: PointerEvent) {
+  if (event.pointerType === 'touch') return
+  if (hoverCloseTimer) clearTimeout(hoverCloseTimer)
+  isWorkMenuOpen.value = true
+}
+
+function onScopePointerLeave(event: PointerEvent) {
+  if (event.pointerType === 'touch') return
+  if (hoverCloseTimer) clearTimeout(hoverCloseTimer)
+  hoverCloseTimer = setTimeout(closeWorkMenu, 160)
 }
 
 function onDocumentPointerDown(event: PointerEvent) {
@@ -156,6 +193,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  if (hoverCloseTimer) clearTimeout(hoverCloseTimer)
   document.removeEventListener('pointerdown', onDocumentPointerDown)
   document.removeEventListener('keydown', onKeydown)
 })

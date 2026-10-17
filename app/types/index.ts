@@ -5,6 +5,8 @@ export type ProjectCategory =
   | 'personal'
   | 'learning'
 
+export type ArchiveCardVariant = 'featured' | 'compact'
+
 export interface Project {
   id: string
   title: string
@@ -21,6 +23,7 @@ export interface Project {
   archiveImage?: string
   archiveImagePosition?: string
   archiveIndex?: string
+  archiveVariant?: ArchiveCardVariant
   categories?: ProjectCategory[]
 }
 
@@ -47,6 +50,7 @@ export interface ProcessStep {
 export interface ContactLink {
   label: string
   href: string
+  icon: string
 }
 
 export interface StackMark {

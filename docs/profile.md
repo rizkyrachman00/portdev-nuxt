@@ -42,7 +42,7 @@ Interested in growing deeper in backend engineering, system design, software arc
 
 - **Role:** Full-time Junior Programmer
 - **Location:** Depok, Sleman, Yogyakarta
-- **Period:** April 2025 — Present
+- **Period:** April 2025 — October 2026
 
 #### UMKM Ngawi Frozen
 
@@ -142,12 +142,12 @@ Developed and delivered a learning management system within four months.
 - **Description:** Extended a Laravel ERP and HRIS covering accounting, inventory, sales, payroll, and cooperative workflows. Automated general-journal integration for sales, purchase, and stock events, built large Excel exports with RabbitMQ, and delivered payroll, shift management, employee lifecycle, and mobile attendance features.
 - **Technologies:** Laravel 11, PostgreSQL, RabbitMQ, Docker
 
-### Kiosk Commerce Backend
+### Lovary K-Kios — Touchscreen Kiosk System
 
 - **Year:** 2026
-- **Type:** Client backend project (PT. Jendela Digital Indonesia)
-- **Description:** API-first Laravel backend for a kiosk commerce experience, built with thin controllers, use-case actions, and an isolated legacy integration boundary. Serves catalog and customization endpoints, issues kiosk API keys, and bridges a signed QR handoff into an existing CodeIgniter 3 cart flow.
-- **Technologies:** Laravel 13, PHP, MariaDB, CodeIgniter 3 integration
+- **Type:** Client full-stack project (PT. Jendela Digital Indonesia)
+- **Description:** End-to-end in-store kiosk system: a React 19 touchscreen app for browsing and configuring jewelry with live price estimates, backed by an API-first Laravel service over the legacy commerce database. Built an idempotent QR handoff that moves saved items to the customer's phone to continue in the existing CodeIgniter 3 checkout, kiosk API-key auth with provisioning, and staff-only settings gated behind a PBKDF2-hashed PIN — designed so no login, typing, or payment happens on the public screen.
+- **Technologies:** React 19, TypeScript, Laravel 13, PHP, MariaDB, CodeIgniter 3 integration
 
 ### miniEcom API Prototype
 

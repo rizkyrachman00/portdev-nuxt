@@ -1,4 +1,4 @@
-import type { Project, ProjectCategory } from '../types'
+import type { ArchiveCardVariant, Project, ProjectCategory } from '../types'
 
 export const projectCategories: ProjectCategory[] = [
   'production',
@@ -41,7 +41,7 @@ const desktopSpanClasses: Record<number, string> = {
 export interface ArchiveCardLayout {
   desktopSpan: number
   tabletSpan: number
-  variant: 'featured' | 'compact'
+  variant: ArchiveCardVariant
   spanClass: string
   tabletSpanClass: string
 }

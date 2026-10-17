@@ -18,6 +18,26 @@ export const projects: Project[] = [
     archiveSummary:
       'Extended a Laravel ERP and HRIS: automated general-journal integration for sales, purchase, and stock events, large Excel exports via RabbitMQ, payroll and shift management, employee lifecycle, and a mobile attendance API.',
     archiveIndex: '01',
+    archiveVariant: 'compact',
+    categories: ['production', 'backend'],
+  },
+  {
+    id: 'kiosk-backend',
+    index: '03',
+    title: 'Lovary K-Kios, an end-to-end QR-handoff kiosk for in-store jewelry shopping.',
+    type: 'FULL-STACK · 2026',
+    year: '2026',
+    summary:
+      "End-to-end in-store kiosk: a React 19 touchscreen app for browsing and configuring jewelry, an API-first Laravel service over the legacy database, and an idempotent QR handoff that continues the order on the customer's own phone.",
+    stack: 'REACT 19 · LARAVEL 13 · MARIADB',
+    link: '#',
+    archiveTitle: 'Lovary K-Kios',
+    archiveSummary:
+      "End-to-end in-store kiosk: a React 19 touchscreen app over a Laravel 13 API with versioned endpoints, and an idempotent QR handoff that continues the order on the customer's own phone.",
+    archiveImage: '/images/work/lovary-kiosk.webp',
+    archiveImagePosition: 'center',
+    archiveVariant: 'compact',
+    archiveIndex: '02',
     categories: ['production', 'backend'],
   },
   {
@@ -37,7 +57,7 @@ export const projects: Project[] = [
       'Extended a live CodeIgniter 3 jewelry platform with 9+ features and integrations across operations, payments, shipping, and referral tracking.',
     archiveImage: '/images/work/lovary-commerce.webp',
     archiveImagePosition: 'center',
-    archiveIndex: '02',
+    archiveIndex: '03',
     categories: ['production', 'backend'],
   },
   {
@@ -57,7 +77,7 @@ export const projects: Project[] = [
       'A thesis-built gym operations system covering membership and attendance with Expo React Native, Hono, PostgreSQL, and Drizzle ORM.',
     archiveImage: '/images/work/blackboxgym.webp',
     archiveImagePosition: 'center',
-    archiveIndex: '03',
+    archiveIndex: '04',
     categories: ['mobile', 'personal'],
   },
   {
@@ -75,7 +95,7 @@ export const projects: Project[] = [
       'Enhanced a Flutter attendance app with 3+ features: offline attendance, manual attendance, permits, GPS, and camera-based face recognition.',
     archiveImage: '/images/work/mobile-attendance.webp',
     archiveImagePosition: 'center',
-    archiveIndex: '04',
+    archiveIndex: '05',
     categories: ['mobile', 'production'],
   },
   {
@@ -93,7 +113,7 @@ export const projects: Project[] = [
       'Delivered 3+ features across store-session management, sales-to-invoice workflows, and PDF and WhatsApp invoice delivery.',
     archiveImage: '/images/work/seco-commerce.webp',
     archiveImagePosition: 'center',
-    archiveIndex: '05',
+    archiveIndex: '06',
     categories: ['production', 'backend'],
   },
   {
@@ -111,7 +131,7 @@ export const projects: Project[] = [
       'Migrated approximately four live applications to a new production VPS with minimal disruption, including backups and post-migration testing.',
     archiveImage: '/images/work/vps-migration.webp',
     archiveImagePosition: 'center',
-    archiveIndex: '06',
+    archiveIndex: '07',
     categories: ['production', 'backend'],
   },
   {
@@ -129,7 +149,7 @@ export const projects: Project[] = [
     archiveTitle: 'Inkindo Academy',
     archiveSummary:
       'A learning management system delivered in four months with 10+ features across authentication, courses, registration, and publishing workflows.',
-    archiveIndex: '07',
+    archiveIndex: '08',
     categories: ['production', 'learning'],
   },
   {
@@ -145,7 +165,7 @@ export const projects: Project[] = [
     archiveTitle: 'miniEcom API',
     archiveSummary:
       'A RESTful API prototype built to strengthen backend fundamentals with Go, Chi Router, sqlc, and PostgreSQL.',
-    archiveIndex: '08',
+    archiveIndex: '09',
     categories: ['backend', 'learning'],
   },
   {
@@ -161,23 +181,7 @@ export const projects: Project[] = [
     archiveTitle: 'miniBookTicket',
     archiveSummary:
       'A ticket-booking prototype exploring concurrency and backend engineering concepts with Go, Redis, and Docker.',
-    archiveIndex: '09',
-    categories: ['backend', 'learning'],
-  },
-  {
-    id: 'kiosk-backend',
-    index: '03',
-    title: 'Kiosk backend bridging an API-first service into a legacy commerce platform.',
-    type: 'BACKEND INTEGRATION · 2026',
-    year: '2026',
-    summary:
-      'API-first Laravel backend for a kiosk commerce flow, built with thin controllers, use-case actions, and an isolated legacy integration boundary.',
-    stack: 'LARAVEL 13 · MARIADB',
-    link: '#',
-    archiveTitle: 'Kiosk Commerce Backend',
-    archiveSummary:
-      'API-first Laravel backend for a kiosk commerce experience: versioned REST endpoints, thin controllers with use-case actions, kiosk API-key auth, and a signed QR handoff bridged into a legacy CodeIgniter 3 cart flow.',
     archiveIndex: '10',
-    categories: ['production', 'backend'],
+    categories: ['backend', 'learning'],
   },
 ]

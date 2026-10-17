@@ -2,7 +2,7 @@
     <div class="grid grid-cols-[72px_36px_1fr] items-start gap-0 sm:grid-cols-[120px_36px_1fr] lg:grid-cols-[216px_54px_1fr]">
       <span
         data-experience-date
-        class="whitespace-nowrap pt-[2px] font-mono text-[10px] font-normal leading-[1.2] tracking-[0.4px] sm:pt-1 sm:text-[11px] lg:pt-[3px]"
+        class="pr-2 pt-[2px] font-mono text-[10px] font-normal leading-[1.2] tracking-[0.4px] sm:pr-0 sm:pt-1 sm:text-[11px] lg:pt-[3px]"
         :class="dateRangeClasses"
       >
         {{ item.dateRange }}

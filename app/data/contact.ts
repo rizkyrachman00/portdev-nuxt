@@ -9,8 +9,8 @@ export const resumeUrl =
 
 export const footerCopy = '© 2026 Rizky. All rights reserved.'
 
-export const footerLinks: ContactLink[] = [
-  { label: 'GitHub', href: 'https://github.com/rizkyrachman00' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/rizkyrachman00' },
-  { label: 'Resume', href: resumeUrl },
+export const socialLinks: ContactLink[] = [
+  { label: 'GitHub', href: 'https://github.com/rizkyrachman00', icon: 'ph:github-logo-fill' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/rizkyrachman00', icon: 'ph:linkedin-logo-fill' },
+  { label: 'Resume', href: resumeUrl, icon: 'ph:file-text-fill' },
 ]

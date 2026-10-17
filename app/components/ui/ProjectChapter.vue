@@ -1,7 +1,7 @@
 <template>
   <article
     ref="chapterScope"
-    class="relative w-full"
+    class="relative w-full lg:pb-14"
     :data-project-image-position="imagePosition"
   >
     <div
@@ -34,29 +34,34 @@
       class="relative z-10 order-3 flex w-full flex-col gap-8 pt-6 md:pt-8 lg:order-none lg:flex-row lg:items-start lg:gap-5 lg:pt-[120px]"
       :class="imagePosition === 'left' ? 'lg:flex-row-reverse' : ''"
     >
-      <div data-project-copy class="w-full lg:w-[370px] lg:shrink-0">
+      <NuxtLink
+        data-project-copy
+        to="/work"
+        class="group block w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:w-[370px] lg:shrink-0"
+      >
         <FeaturedProjectCard :project="project" />
-      </div>
+      </NuxtLink>
 
-      <div
+      <NuxtLink
+        v-if="project.image"
         data-project-media
-        class="w-full overflow-hidden rounded-[14px] lg:flex-1"
+        to="/work"
+        class="group block w-full overflow-hidden rounded-[14px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:flex-1"
       >
         <NuxtImg
-          v-if="project.image"
           data-project-image
           :src="project.image"
           :alt="project.title"
-          class="h-auto w-full rounded-[14px] object-cover"
+          class="h-auto w-full rounded-[14px] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           sizes="100vw lg:730px"
         />
-      </div>
+      </NuxtLink>
     </div>
 
     <div
       v-if="bottomAsideProject"
       data-project-aside
-      class="relative z-20 order-4 w-full lg:order-none lg:absolute lg:top-[520px] lg:w-[360px]"
+      class="relative z-20 order-4 mt-6 w-full md:mt-8 lg:order-none lg:absolute lg:bottom-0 lg:mt-0 lg:w-[360px]"
       :class="imagePosition === 'left' ? 'lg:right-0' : 'lg:left-0'"
     >
       <div class="relative border-t border-ink-200">

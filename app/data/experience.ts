@@ -3,12 +3,12 @@ import type { ExperienceItem } from '~/types'
 export const experienceItems: ExperienceItem[] = [
   {
     id: 'junior-programmer',
-    dateRange: 'APR 2025—NOW',
+    dateRange: 'APR 2025—OCT 2026',
     role: 'Junior Programmer',
     company: 'Indonesia IT — PT. Jendela Digital Indonesia',
     description:
       'Building production web and mobile applications, APIs, integrations, and infrastructure.',
-    isCurrent: true,
+    isCurrent: false,
   },
   {
     id: 'inkindo-intern',

@@ -43,20 +43,24 @@
         <div data-contact-footer-content class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <div class="flex items-center gap-2">
             <span data-contact-stamp class="h-[6px] w-[6px] rounded-full bg-accent" aria-hidden="true" />
-            <span class="text-[13px] font-normal leading-[1.2] text-ink-700">
+            <span class="text-[14px] font-normal leading-[1.2] text-ink-700">
               {{ footerCopy }}
             </span>
           </div>
 
           <nav class="flex items-center gap-6">
             <a
-              v-for="link in footerLinks"
+              v-for="link in socialLinks"
               :key="link.label"
               :href="link.href"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-[13px] font-medium leading-[1.2] text-ink-900 transition-colors duration-200 hover:text-accent"
+              class="group inline-flex items-center gap-1.5 text-[14px] font-medium leading-[1.2] text-ink-900 transition-colors duration-200 hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
+              <Icon
+                :name="link.icon"
+                class="h-[18px] w-[18px] transition-transform duration-300 motion-reduce:transform-none group-hover:scale-110"
+              />
               {{ link.label }}
             </a>
           </nav>
@@ -81,7 +85,7 @@
 
 <script setup lang="ts">
 import { gsap } from 'gsap'
-import { contactEmail, footerCopy, footerLinks } from '~/data/contact'
+import { contactEmail, footerCopy, socialLinks } from '~/data/contact'
 
 const contactScope = useTemplateRef<HTMLElement>('contactScope')
 

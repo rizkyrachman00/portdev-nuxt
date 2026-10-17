@@ -49,8 +49,8 @@
       </div>
     </div>
 
-    <div v-else class="flex w-full flex-col">
-      <div class="w-full p-5 md:p-6">
+    <div v-else class="flex w-full flex-1 flex-col">
+      <div class="w-full flex-1 p-5 md:p-6">
         <div class="flex w-full items-baseline justify-between gap-4">
           <span class="font-mono text-[10px] font-normal tracking-[0.8px] text-accent md:text-[11px]">
             {{ archiveIndex }}
@@ -115,12 +115,12 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Project } from '~/types'
+import type { ArchiveCardVariant, Project } from '~/types'
 
 interface Props {
   project: Project
   archiveIndex: string
-  variant: 'featured' | 'compact'
+  variant: ArchiveCardVariant
 }
 
 const props = defineProps<Props>()

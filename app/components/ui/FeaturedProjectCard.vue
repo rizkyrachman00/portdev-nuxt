@@ -10,7 +10,7 @@
     </div>
 
     <h4
-      class="font-sans text-[34px] font-semibold leading-[1.05] tracking-[-1.2px] text-ink-900"
+      class="font-sans text-[34px] font-semibold leading-[1.05] tracking-[-1.2px] text-ink-900 transition-colors group-hover:text-accent"
     >
       {{ project.title }}
     </h4>

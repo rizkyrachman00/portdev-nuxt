@@ -1,8 +1,8 @@
 <template>
-  <a
-    :href="project.link || '#'"
+  <NuxtLink
+    to="/work"
     class="group flex w-full items-center gap-2 transition-colors hover:text-accent"
-    :class="align === 'baseline' ? 'h-[66px] items-end pb-4' : 'h-[66px] items-center'"
+    :class="align === 'baseline' ? 'min-h-[66px] items-end pb-4' : 'min-h-[66px] items-center max-lg:py-5'"
   >
     <span
       class="w-6 font-mono text-[10px] font-normal tracking-[0.8px] text-[#15151566]"
@@ -18,7 +18,7 @@
       name="ph:arrow-up-right-thin"
       class="h-[18px] w-[18px] text-ink-900 transition-colors transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
     />
-  </a>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
