@@ -5,7 +5,7 @@ export const contactEmailAddress = 'rachman.ti2025@gmail.com'
 export const contactEmail = `mailto:${contactEmailAddress}`
 
 export const resumeUrl =
-  'https://drive.google.com/file/d/1D_VKwPbPGNOec82mfEyQ2b01tM2aph1Z/view?usp=sharing'
+  'https://drive.google.com/file/d/1aKIRihv33mBJyUfoZeXAyCmMGNZMmm8R/view?usp=sharing'
 
 export const footerCopy = '© 2026 Rizky. All rights reserved.'
 
